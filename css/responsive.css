@@ -1,0 +1,258 @@
+/* ========================================================================
+   TimeKeepers AI — responsive.css
+   Breakpoints:
+     - Tablet:   <= 1024px
+     - Mobile:   <= 768px
+     - Mobile S: <= 480px
+   ======================================================================== */
+
+/* ============== TABLET (<= 1024px) ============== */
+@media (max-width: 1024px){
+  :root{ --container-pad: 40px; }
+
+  /* Nav */
+  nav.topbar{padding:16px var(--container-pad);}
+  nav.topbar.scrolled{padding:12px var(--container-pad);}
+  nav.topbar .nav-links{gap:24px;}
+  nav.topbar .nav-links a{font-size:13px;}
+
+  /* Hero */
+  .hero{padding:140px 0 80px; min-height:auto;}
+  .hero-content{grid-template-columns:1fr; gap:60px;}
+  .hero-panel{height:480px;}
+  .hero-bg-orbit{width:700px; height:700px; right:-200px; opacity:.35;}
+  .hero-glow{width:600px; height:600px;}
+  .hero-lede{font-size:19px;}
+  .hero-meta{gap:32px;}
+  .hero-meta .item .n{font-size:40px;}
+
+  /* Sections */
+  section.sec{padding:100px 0;}
+  .sec-head{flex-direction:column; align-items:flex-start; gap:24px; margin-bottom:60px;}
+  .sec-head .right{max-width:100%;}
+
+  /* Services: 2 cols still, but smaller padding */
+  .service{padding:40px 32px; min-height:420px;}
+  .service h3{font-size:36px;}
+  .service .metric{font-size:72px; right:28px; bottom:28px;}
+
+  /* Process: 2 cols */
+  .process{grid-template-columns:repeat(2,1fr); gap:40px 20px;}
+  .step{padding:32px 20px 32px 0;}
+
+  /* Cases: 2 cols */
+  .cases{grid-template-columns:repeat(2,1fr);}
+
+  /* Metrics: 2 cols */
+  .metrics-grid{grid-template-columns:repeat(2,1fr);}
+  .metric-cell{padding:40px 28px; min-height:280px;}
+
+  /* Testimonials: still 3 cols but smaller */
+  .testimonials{gap:16px;}
+  .testimonial{padding:36px 28px; min-height:380px;}
+  .testimonial p{font-size:19px;}
+
+  /* About */
+  .about-grid{grid-template-columns:1fr; gap:60px;}
+  .about-grid .manifesto{font-size:26px;}
+  .founder{grid-template-columns:140px 1fr; gap:32px; padding:32px;}
+  .founder .avatar{width:140px; height:140px;}
+  .founder .avatar .ini{font-size:56px;}
+  .founder .loc{grid-column:1 / -1; text-align:left; padding-top:20px; border-top:1px solid var(--hair);}
+
+  /* Contact */
+  .contact-grid{grid-template-columns:1fr; gap:60px;}
+  .contact-form{padding:32px;}
+
+  /* CTA band */
+  .cta-band{padding:120px 0;}
+
+  /* Footer */
+  .footer-grid{grid-template-columns:repeat(3,1fr); gap:40px;}
+  .footer-about{grid-column:1 / -1;}
+  .footer-copy{flex-direction:column; align-items:flex-start; gap:12px; text-align:left;}
+
+  /* Marquee label — hide position-fixed label */
+  .marquee-label{left:var(--container-pad);}
+}
+
+/* ============== MOBILE (<= 768px) ============== */
+@media (max-width: 768px){
+  :root{ --container-pad: 20px; }
+
+  body{font-size:15px;}
+
+  /* Nav: show hamburger, hide desktop links + CTA */
+  .nav-toggle{display:flex;}
+  nav.topbar .nav-links{
+    position:fixed; top:0; right:0;
+    width:min(320px, 85vw); height:100vh;
+    background:rgba(11,15,25,.98);
+    backdrop-filter:blur(20px);
+    border-left:1px solid var(--hair2);
+    flex-direction:column; align-items:flex-start;
+    padding:100px 32px 32px; gap:0;
+    transform:translateX(100%); transition:transform .35s cubic-bezier(.2,.8,.2,1);
+    z-index:99;
+  }
+  nav.topbar .nav-links.open{transform:translateX(0);}
+  nav.topbar .nav-links li{width:100%; border-bottom:1px solid var(--hair);}
+  nav.topbar .nav-links a{
+    display:block; padding:20px 0;
+    font-family:'Outfit'; font-size:20px; font-weight:500;
+    color:var(--white);
+  }
+  nav.topbar .nav-cta{display:none;}
+
+  /* Hide custom cursor on mobile */
+  .cursor-dot, .cursor-ring{display:none !important;}
+
+  /* Hero */
+  .hero{padding:120px 0 60px;}
+  .hero-bg-orbit{display:none;}
+  .hero-glow{width:400px; height:400px; opacity:.6;}
+  .hero h1{margin:20px 0 24px;}
+  .hero-lede{font-size:17px;}
+  .hero-ctas{margin-top:32px; flex-direction:column; align-items:stretch; gap:12px;}
+  .hero-ctas .btn-primary,
+  .hero-ctas .btn-secondary{justify-content:center; padding:16px 24px;}
+  .hero-meta{margin-top:48px; padding-top:24px; gap:20px;}
+  .hero-meta .item{flex:1 1 calc(50% - 10px); min-width:120px;}
+  .hero-meta .item .n{font-size:32px;}
+
+  /* Hero panel */
+  .hero-panel{height:auto; padding:20px;}
+  .hp-log{font-size:11px; min-height:180px;}
+  .hp-footer{grid-template-columns:repeat(3,1fr); gap:8px;}
+  .hp-footer .cell{padding:10px;}
+  .hp-footer .cell .v{font-size:22px;}
+  .hp-footer .cell .v .u{font-size:14px;}
+  .hp-footer .cell .l{font-size:9px;}
+
+  /* Marquee */
+  .marquee{padding:40px 0 24px;}
+  .marquee-track{gap:48px;}
+  .marquee-track .item{font-size:18px;}
+
+  /* Sections */
+  section.sec{padding:80px 0;}
+  .sec-head{margin-bottom:48px; gap:16px;}
+
+  /* Services: 1 col */
+  .services{grid-template-columns:1fr;}
+  .service{min-height:auto; padding:36px 24px;}
+  .service h3{font-size:30px;}
+  .service .metric{font-size:56px; right:20px; bottom:20px;}
+
+  /* Process: 1 col */
+  .process{grid-template-columns:1fr; gap:16px;}
+  .step{padding:32px 0 24px; border-top:1px solid var(--hair);}
+  .step:first-child{border-top:none;}
+  .step .n{font-size:56px; margin-bottom:16px;}
+  .step::before{display:none;}
+
+  /* Cases: 1 col */
+  .cases{grid-template-columns:1fr;}
+  .case .body{padding:24px;}
+  .case h4{font-size:22px;}
+
+  /* Metrics: 1 col */
+  .metrics-grid{grid-template-columns:1fr;}
+  .metric-cell{min-height:auto; padding:32px 24px;}
+
+  /* Testimonials: 1 col */
+  .testimonials{grid-template-columns:1fr;}
+  .testimonial{min-height:auto; padding:32px 24px;}
+  .testimonial p{font-size:18px;}
+  .testimonial .q{font-size:72px;}
+
+  /* About */
+  .about-grid{gap:40px;}
+  .about-grid .manifesto{font-size:22px;}
+  .founder{grid-template-columns:1fr; padding:24px; text-align:center;}
+  .founder .avatar{width:120px; height:120px; margin:0 auto;}
+  .founder .avatar .ini{font-size:48px;}
+  .founder .txt p{max-width:100%;}
+  .founder .loc{text-align:center;}
+
+  /* FAQ */
+  .faq-item{padding:20px 0;}
+  .faq-item .q{gap:20px;}
+  .faq-item .q h5{font-size:18px;}
+  .faq-item .a{font-size:15px;}
+
+  /* Contact form */
+  .contact-form{padding:24px;}
+  .field-row{grid-template-columns:1fr; gap:0;}
+  .contact-info h3{margin:16px 0 20px;}
+  .contact-info p{font-size:16px;}
+  .contact-info .ch{margin-top:32px;}
+  .contact-info .ch .row{flex-direction:column; gap:6px; padding:14px 0;}
+  .contact-info .ch .row .v{text-align:left; font-size:16px;}
+
+  /* CTA band */
+  .cta-band{padding:80px 0;}
+  .cta-band .glow{width:600px; height:600px;}
+  .cta-band .sub{font-size:17px;}
+  .cta-band .btns{flex-direction:column; align-items:stretch;}
+  .cta-band .btns .btn-primary,
+  .cta-band .btns .btn-secondary{justify-content:center;}
+
+  /* Footer */
+  footer{padding:60px 0 32px;}
+  .footer-grid{grid-template-columns:repeat(2,1fr); gap:32px 20px; padding-bottom:40px;}
+  .footer-about{grid-column:1 / -1;}
+  .footer-copy{padding-top:24px; font-size:10px;}
+
+  /* Section titles */
+  .hero-meta .item .n .pct{font-size:18px;}
+  .hero-meta .item .n .sfx{font-size:14px;}
+}
+
+/* ============== MOBILE S (<= 480px) ============== */
+@media (max-width: 480px){
+  :root{ --container-pad: 16px; }
+
+  .eyebrow{font-size:11px; letter-spacing:.22em;}
+
+  nav.topbar .logo{font-size:16px;}
+  nav.topbar .logo img{width:28px; height:28px;}
+
+  .hero{padding:110px 0 48px;}
+  .hero h1{font-size:44px;}
+  .hero-lede{font-size:16px;}
+  .hero-meta{gap:16px;}
+
+  .sec-head h2{font-size:34px;}
+  .service h3{font-size:26px;}
+  .metric-cell .n{font-size:56px;}
+  .testimonial p{font-size:16px;}
+  .about-grid .manifesto{font-size:19px;}
+  .founder .txt h4{font-size:26px;}
+
+  .footer-grid{grid-template-columns:1fr;}
+
+  .cta-band h2{font-size:48px;}
+}
+
+/* ============== TOUCH DEVICES ============== */
+@media (hover: none){
+  .cursor-dot, .cursor-ring{display:none !important;}
+  body{cursor:auto !important;}
+  /* Remove hover-based transforms on touch */
+  .service:hover, .case:hover, .testimonial:hover, .metric-cell:hover{
+    transform:none; background:inherit;
+  }
+}
+
+/* ============== REDUCED MOTION ============== */
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+  }
+  .marquee-track{animation:none;}
+  .hp-head .dots span:first-child{animation:none;}
+  html{scroll-behavior:auto;}
+}
