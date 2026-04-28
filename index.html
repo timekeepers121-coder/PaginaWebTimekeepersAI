@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="utf-8"/>
-<title>TimeKeepers AI — Arquitectos de eficiencia</title>
+<title>TimeKeepers AI — Control your time. Increase your income.</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" content="TimeKeepers AI — Diseñamos sistemas de IA y automatizaciones end-to-end que asumen el peso de las tareas repetitivas. US × LATAM."/>
+<meta name="description" content="Time Keepers uses AI to track, organize, and optimize your time and finances — so you can focus on what actually makes you money."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="css/main.css"/>
 <link rel="stylesheet" href="css/responsive.css"/>
 </head>
@@ -18,605 +18,198 @@
 
 <!-- ==================== NAV ==================== -->
 <nav class="topbar" id="nav">
-  <a href="#" class="logo">
+  <a href="index.html" class="logo">
     <img src="assets/logo-white.png" alt="TimeKeepers AI"/>
     <span>TimeKeepers<span class="ai"> AI</span></span>
   </a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#about">Nosotros</a></li>
-    <li><a href="#services">Servicios</a></li>
-    <li><a href="#cases">Casos</a></li>
-    <li><a href="#impact">Impacto</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#contact">Contacto</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="cases.html">Cases</a></li>
   </ul>
-  <a href="#contact" class="cta nav-cta">
-    <span>Book Audit</span>
+  <a href="#book-call" class="cta nav-cta">
+    <span>Book a Call</span>
     <span class="arr">→</span>
   </a>
-  <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+  <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
 <!-- ==================== HERO ==================== -->
 <section class="hero" id="home">
-  <div class="grid-bg"></div>
   <div class="hero-glow"></div>
-  <div class="hero-bg-orbit">
-    <svg viewBox="0 0 1000 1000" id="orbit-svg">
-      <g fill="none" stroke="rgba(40,168,223,.25)" stroke-width="1">
-        <circle cx="500" cy="500" r="420"/>
-        <ellipse cx="500" cy="500" rx="420" ry="140" transform="rotate(-25 500 500)"/>
-        <ellipse cx="500" cy="500" rx="420" ry="140" transform="rotate(30 500 500)"/>
-        <ellipse cx="500" cy="500" rx="140" ry="420"/>
-      </g>
-      <g id="orbit-nodes">
-        <circle cx="500" cy="80" r="6" fill="#28A8DF"/>
-        <circle cx="920" cy="500" r="5" fill="#C0C0C0"/>
-        <circle cx="80" cy="500" r="5" fill="#C0C0C0"/>
-        <circle cx="500" cy="920" r="6" fill="#28A8DF"/>
-        <circle cx="780" cy="230" r="4" fill="#28A8DF"/>
-        <circle cx="220" cy="780" r="4" fill="#28A8DF"/>
-        <circle cx="780" cy="780" r="3" fill="#C0C0C0"/>
-        <circle cx="220" cy="230" r="3" fill="#C0C0C0"/>
-      </g>
-    </svg>
-  </div>
 
   <div class="container hero-content">
-    <div>
-      <div class="eyebrow">TimeKeepers AI · Naples, FL · US × LATAM</div>
-      <h1 id="hero-title">
-        <span class="thin">Arquitectos</span><br/>
-        de eficiencia<br/>
-        <span class="cyan">corporativa.</span>
+    <div class="hero-copy reveal">
+      <div class="hero-eyebrow">— TimeKeepers AI</div>
+
+      <h1 class="hero-title">
+        Control your time.<br/>
+        Increase your income.<br/>
+        <span class="cyan">Automate your workflow.</span>
       </h1>
-      <p class="hero-lede" id="hero-lede">
-        Diseñamos sistemas de IA y automatizaciones end-to-end que asumen el peso de las tareas repetitivas. El sistema hace el resto.
+
+      <p class="hero-lede">
+        Time Keepers uses AI to track, organize, and optimize your time and finances — so you can focus on what actually makes you money.
       </p>
-      <div class="hero-ctas">
-        <a href="#contact" class="btn-primary" data-cursor="hover">
-          <span>Agenda auditoría · 30 min</span>
-          <span>→</span>
+
+      <div class="hero-cta">
+        <a href="#book-call" class="btn-primary" data-cursor="hover">
+          <span>Book a Consultation Call</span>
+          <span class="arr">→</span>
         </a>
-        <a href="#services" class="btn-secondary" data-cursor="hover">
-          <span>Ver servicios</span>
+        <a href="#how" class="btn-secondary" data-cursor="hover">
+          <span>See how it works</span>
         </a>
       </div>
-      <div class="hero-meta">
-        <div class="item"><div class="n">60–80<span class="pct">%</span></div><div class="lbl">↓ Tareas manuales</div></div>
-        <div class="item"><div class="n">4–8<span class="sfx"> sem</span></div><div class="lbl">A producción</div></div>
-        <div class="item"><div class="n">24/7</div><div class="lbl">Sistemas autónomos</div></div>
-      </div>
+      <p class="hero-microcopy">Takes 30 seconds. No commitment.</p>
     </div>
 
-    <!-- live panel -->
-    <div class="hero-panel">
-      <div class="hp-head">
-        <div class="hp-head-left">
-          <div class="dots"><span></span><span></span><span></span></div>
-          <div class="hp-title">Agent · Production</div>
+    <!-- Mockup placeholder: replace inner .mockup-body content with <img class="mockup-img" src="assets/dashboard.png" alt="..."/> when ready -->
+    <div class="hero-mockup reveal">
+      <div class="mockup-glow"></div>
+      <div class="mockup-frame" data-cursor="hover">
+        <div class="mockup-chrome">
+          <div class="chrome-dots"><span></span><span></span><span></span></div>
+          <div class="chrome-label">timekeepers.ai · revenue intelligence</div>
         </div>
-        <div class="hp-title">● live</div>
-      </div>
-      <div class="hp-log" id="hp-log"></div>
-      <div class="hp-footer">
-        <div class="cell"><div class="v" id="kpi1">0</div><div class="l">Tasks / min</div></div>
-        <div class="cell"><div class="v" id="kpi2">0<span class="u">ms</span></div><div class="l">Avg. latency</div></div>
-        <div class="cell"><div class="v" id="kpi3">0<span class="u">%</span></div><div class="l">Accuracy</div></div>
+
+        <div class="mockup-body">
+          <div class="dash-stats">
+            <div class="dash-stat">
+              <div class="stat-l">Monthly revenue</div>
+              <div class="stat-v">$248K</div>
+              <div class="stat-trend">▲ 32%</div>
+            </div>
+            <div class="dash-stat">
+              <div class="stat-l">Hours saved</div>
+              <div class="stat-v">142h</div>
+              <div class="stat-trend">▲ 18%</div>
+            </div>
+          </div>
+
+          <div class="dash-chart">
+            <div class="chart-head">
+              <span class="chart-title">Revenue · last 30 days</span>
+              <span class="chart-pill">Live</span>
+            </div>
+            <svg class="chart-svg" viewBox="0 0 400 130" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="chartFill" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0" stop-color="#28A8DF" stop-opacity=".42"/>
+                  <stop offset="1" stop-color="#28A8DF" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <g stroke="rgba(255,255,255,.05)" stroke-width="1">
+                <line x1="0" y1="32" x2="400" y2="32"/>
+                <line x1="0" y1="64" x2="400" y2="64"/>
+                <line x1="0" y1="96" x2="400" y2="96"/>
+              </g>
+              <path d="M0 100 L 50 82 L 100 92 L 150 62 L 200 72 L 250 42 L 300 50 L 350 26 L 400 30 L 400 130 L 0 130 Z" fill="url(#chartFill)"/>
+              <path class="chart-line" d="M0 100 L 50 82 L 100 92 L 150 62 L 200 72 L 250 42 L 300 50 L 350 26 L 400 30" stroke="#28A8DF" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="350" cy="26" r="4" fill="#28A8DF"/>
+              <circle cx="350" cy="26" r="9" fill="#28A8DF" opacity=".18"/>
+            </svg>
+          </div>
+
+          <div class="dash-row">
+            <div class="dash-pill">Lead routed · 4.2s</div>
+            <div class="dash-pill cy">Deal opened — $14,200</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ==================== MARQUEE ==================== -->
-<div class="marquee">
-  <div class="marquee-label">// Stack operativo</div>
-  <div class="marquee-track" id="marquee">
-    <div class="item"><div class="dot"></div>GPT-4</div>
-    <div class="item"><div class="dot"></div>Claude</div>
-    <div class="item"><div class="dot"></div>n8n</div>
-    <div class="item"><div class="dot"></div>LangChain</div>
-    <div class="item"><div class="dot"></div>Gemini 2.0</div>
-    <div class="item"><div class="dot"></div>Next.js</div>
-    <div class="item"><div class="dot"></div>HubSpot</div>
-    <div class="item"><div class="dot"></div>Make</div>
-    <div class="item"><div class="dot"></div>Vercel</div>
-    <div class="item"><div class="dot"></div>LlamaIndex</div>
-    <div class="item"><div class="dot"></div>Vector DBs</div>
-    <div class="item"><div class="dot"></div>Perplexity</div>
-  </div>
-</div>
-
-<!-- ==================== ABOUT ==================== -->
-<section class="sec" id="about">
+<!-- ==================== PROBLEM ==================== -->
+<section class="sec sec-alt" id="problem">
   <div class="container">
-    <div class="sec-head reveal">
-      <div class="left">
-        <div class="eyebrow">§ Quiénes somos · El fin de la fricción operativa</div>
-        <h2>No somos una agencia.<br/>Somos <span class="cyan">arquitectos.</span></h2>
-      </div>
-      <div class="right">
-        En la era digital, el activo más valioso de cualquier empresa no es el capital: es el tiempo.
-      </div>
-    </div>
+    <header class="sec-intro reveal">
+      <div class="eyebrow">— The problem</div>
+      <h2 class="sec-title">
+        You're losing time — and money —<br/>
+        <span class="cyan">without realizing it.</span>
+      </h2>
+    </header>
 
-    <div class="about-grid reveal">
-      <div class="manifesto">
-        TimeKeepers AI transforma negocios tradicionales en <span class="cy">ecosistemas autónomos</span>, inteligentes y altamente rentables. Diseñamos sistemas de IA y automatizaciones end-to-end que asumen el peso de las tareas repetitivas, conectan plataformas fragmentadas y ejecutan flujos con precisión milimétrica. <span class="cy">El sistema hace el resto.</span>
-      </div>
-      <div class="side">
-        <div class="block">
-          <div class="lbl">§ Misión</div>
-          <p>Empoderar a empresas de EE.UU. y LATAM erradicando la ineficiencia operativa mediante IA y automatización de vanguardia. Devolvemos a fundadores y equipos su tiempo estratégico.</p>
-        </div>
-        <div class="block">
-          <div class="lbl">§ Visión · 2030</div>
-          <p>Convertirnos en el socio tecnológico definitivo para empresas en crecimiento del continente americano, estableciendo el nuevo estándar global de eficiencia corporativa.</p>
-        </div>
-        <div class="block">
-          <div class="lbl">§ Lema operativo</div>
-          <p class="motto">Automatiza hoy, crece siempre.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="founder reveal">
-      <div class="avatar">
-        <div class="ini">IM</div>
-      </div>
-      <div class="txt">
-        <div class="lbl">§ Founder &amp; CEO</div>
-        <h4>Iván Mercado</h4>
-        <div class="role">Arquitecto de eficiencia · AI Systems Strategist</div>
-        <p>"Cada hora que un equipo gasta en tareas repetitivas es una hora robada al pensamiento estratégico. Construimos los sistemas que devuelven ese tiempo — 24/7, sin quejas, sin errores."</p>
-      </div>
-      <div class="loc">
-        <div class="co">Naples, FL</div>
-        <div class="c">US × LATAM · Remote-first</div>
-      </div>
-    </div>
+    <ul class="problem-grid reveal">
+      <li class="problem-cell">
+        <span class="idx">01</span>
+        <p>You don't know exactly where your time is going</p>
+      </li>
+      <li class="problem-cell">
+        <span class="idx">02</span>
+        <p>Your income isn't optimized</p>
+      </li>
+      <li class="problem-cell">
+        <span class="idx">03</span>
+        <p>You're managing everything manually</p>
+      </li>
+      <li class="problem-cell">
+        <span class="idx">04</span>
+        <p>You feel busy… but not productive</p>
+      </li>
+    </ul>
   </div>
 </section>
 
-<!-- ==================== SERVICES ==================== -->
-<section class="sec" id="services">
+<!-- ==================== SOLUTION ==================== -->
+<section class="sec" id="solution">
   <div class="container">
-    <div class="sec-head reveal">
-      <div class="left">
-        <div class="eyebrow">§ Servicios · 4 prácticas</div>
-        <h2>Cuatro sistemas.<br/>Un único <span class="cyan">objetivo.</span></h2>
-      </div>
-      <div class="right">
-        Cada servicio es un sistema autónomo diseñado para devolverte tiempo estratégico. Desplegamos en 4–8 semanas y medimos el impacto desde el día uno.
-      </div>
-    </div>
-
-    <div class="services reveal">
-      <div class="service" data-cursor="hover">
-        <div>
-          <div class="num">
-            <span class="tag">S / 01</span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#28A8DF" stroke-width="1.5"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
-          </div>
-          <h3>Intelligent<br/>Automation</h3>
-          <div class="sub">Workflow Orchestration</div>
-          <p class="desc">Sistemas end-to-end que eliminan cuellos de botella operativos y multiplican capacidad sin aumentar nómina.</p>
-        </div>
-        <div class="stack">
-          <span class="chip">n8n</span><span class="chip">Make</span><span class="chip">Python</span><span class="chip">LangChain</span><span class="chip">RAG</span>
-        </div>
-        <div class="metric">60–80%</div>
-      </div>
-
-      <div class="service" data-cursor="hover">
-        <div>
-          <div class="num">
-            <span class="tag">S / 02</span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#28A8DF" stroke-width="1.5"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
-          </div>
-          <h3>Revenue<br/>Intelligence</h3>
-          <div class="sub">Growth Marketing con IA</div>
-          <p class="desc">Demand generation científico donde cada dólar retorna con impacto medible y escalable.</p>
-        </div>
-        <div class="stack">
-          <span class="chip">HubSpot</span><span class="chip">Meta Ads</span><span class="chip">Gemini 2.0</span><span class="chip">GA4</span><span class="chip">Perplexity</span>
-        </div>
-        <div class="metric">2–4×</div>
-      </div>
-
-      <div class="service" data-cursor="hover">
-        <div>
-          <div class="num">
-            <span class="tag">S / 03</span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#28A8DF" stroke-width="1.5"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
-          </div>
-          <h3>Digital<br/>Assets</h3>
-          <div class="sub">High-Conversion Web</div>
-          <p class="desc">Digital Real Estate optimizado para conversión máxima, velocidad extrema y SEO técnico.</p>
-        </div>
-        <div class="stack">
-          <span class="chip">Next.js</span><span class="chip">React</span><span class="chip">Webflow</span><span class="chip">Vercel</span><span class="chip">Ahrefs</span>
-        </div>
-        <div class="metric">&lt;2s</div>
-      </div>
-
-      <div class="service" data-cursor="hover">
-        <div>
-          <div class="num">
-            <span class="tag">S / 04</span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#28A8DF" stroke-width="1.5"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
-          </div>
-          <h3>AI Strategy<br/>&amp; Consulting</h3>
-          <div class="sub">Implementation</div>
-          <p class="desc">Auditamos operaciones, identificamos cuellos de botella y diseñamos AI Roadmaps medibles por ROI.</p>
-        </div>
-        <div class="stack">
-          <span class="chip">GPT-4</span><span class="chip">Claude</span><span class="chip">LangChain</span><span class="chip">Vector DBs</span><span class="chip">Docker</span>
-        </div>
-        <div class="metric">&gt;85%</div>
-      </div>
+    <div class="solution reveal">
+      <div class="eyebrow">— The solution</div>
+      <h2 class="sec-title">
+        A smarter way to manage<br/>
+        your <span class="cyan">time and income.</span>
+      </h2>
+      <p class="solution-lede">
+        Time Keepers is an AI-powered system that tracks your time, analyzes your workflow, and helps you make better decisions — automatically.
+      </p>
     </div>
   </div>
 </section>
 
-<!-- ==================== PROCESS ==================== -->
-<section class="sec sec-alt" id="process">
+<!-- ==================== HOW IT WORKS ==================== -->
+<section class="sec sec-alt" id="how">
   <div class="container">
-    <div class="sec-head reveal">
-      <div class="left">
-        <div class="eyebrow">§ Proceso · Del diagnóstico a producción</div>
-        <h2>Cuatro pasos.<br/>Cero <span class="cyan">fricción.</span></h2>
-      </div>
-      <div class="right">
-        Un sistema metódico para llevar tu operación de manual a autónoma sin detener el negocio.
-      </div>
-    </div>
+    <header class="sec-intro reveal">
+      <div class="eyebrow">— How it works</div>
+      <h2 class="sec-title">How it works.</h2>
+    </header>
 
-    <div class="process reveal">
-      <div class="step">
-        <div class="n">01</div>
-        <h4>Audit</h4>
-        <p class="d">AI Readiness Audit. Mapeamos procesos, cuellos de botella y oportunidades con mayor ROI.</p>
-      </div>
-      <div class="step">
-        <div class="n">02</div>
-        <h4>Design</h4>
-        <p class="d">Diseñamos el AI Roadmap: arquitectura, agentes, flujos, integraciones y KPIs.</p>
-      </div>
-      <div class="step">
-        <div class="n">03</div>
-        <h4>Build</h4>
-        <p class="d">Construimos e integramos en sprints cortos. PoC → producción en 4–8 semanas.</p>
-      </div>
-      <div class="step">
-        <div class="n">04</div>
-        <h4>Scale</h4>
-        <p class="d">Monitoreo, optimización continua y expansión a nuevas áreas del negocio.</p>
-      </div>
-    </div>
+    <ol class="steps reveal">
+      <li class="step-cell">
+        <span class="step-num">01</span>
+        <h3>Connect your workflow.</h3>
+      </li>
+      <li class="step-cell">
+        <span class="step-num">02</span>
+        <h3>Let the system track and analyze.</h3>
+      </li>
+      <li class="step-cell">
+        <span class="step-num">03</span>
+        <h3>Get insights and optimize your income.</h3>
+      </li>
+    </ol>
   </div>
 </section>
 
-<!-- ==================== CASES ==================== -->
-<section class="sec" id="cases">
-  <div class="container">
-    <div class="sec-head reveal">
-      <div class="left">
-        <div class="eyebrow">§ Casos · Despliegues reales</div>
-        <h2>Sistemas que<br/>ya están <span class="cyan">funcionando.</span></h2>
-      </div>
-      <div class="right">
-        Tres operaciones que pasaron de manuales a autónomas. Cada una con sus propias métricas, stack y ROI verificable.
-      </div>
-    </div>
-
-    <div class="cases reveal">
-      <div class="case" data-cursor="hover">
-        <div class="cover">
-          <svg class="viz-flow" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
-            <rect width="400" height="300" fill="#10172A"/>
-            <g stroke="#28A8DF" stroke-width="1" fill="none" opacity=".5">
-              <path d="M40 60 L 120 60 L 120 150 L 200 150 L 200 240 L 360 240"/>
-              <path d="M40 110 L 180 110 L 180 200 L 360 200"/>
-              <path d="M40 160 L 120 160 L 120 100 L 260 100 L 260 160 L 360 160"/>
-            </g>
-            <g fill="#28A8DF">
-              <circle cx="40" cy="60" r="4"/><circle cx="40" cy="110" r="4"/><circle cx="40" cy="160" r="4"/>
-              <circle cx="360" cy="160" r="5"/><circle cx="360" cy="200" r="5"/><circle cx="360" cy="240" r="5"/>
-            </g>
-            <g fill="#C0C0C0" opacity=".6">
-              <rect x="180" y="140" width="40" height="20"/>
-              <rect x="260" y="90" width="40" height="20"/>
-              <rect x="180" y="190" width="40" height="20"/>
-            </g>
-          </svg>
-        </div>
-        <div class="body">
-          <div class="tag">CASE / 01 · DRAKEN LIMO</div>
-          <h4>De agenda manual a dispatch autónomo</h4>
-          <div class="industry">Transporte ejecutivo · US</div>
-          <p class="case-desc">
-            Agentes IA para cotizaciones, confirmaciones y trazabilidad. Integración con CRM y WhatsApp Business.
-          </p>
-          <div class="stats">
-            <div class="st"><div class="v">72%</div><div class="l">↓ Tiempo manual</div></div>
-            <div class="st"><div class="v">3.2×</div><div class="l">Más reservas</div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="case" data-cursor="hover">
-        <div class="cover">
-          <svg class="viz-nodes" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
-            <rect width="400" height="300" fill="#10172A"/>
-            <g stroke="#28A8DF" stroke-width=".8" fill="none" opacity=".4">
-              <line x1="200" y1="150" x2="80" y2="60"/>
-              <line x1="200" y1="150" x2="320" y2="70"/>
-              <line x1="200" y1="150" x2="70" y2="220"/>
-              <line x1="200" y1="150" x2="330" y2="230"/>
-              <line x1="200" y1="150" x2="140" y2="100"/>
-              <line x1="200" y1="150" x2="260" y2="90"/>
-              <line x1="200" y1="150" x2="130" y2="210"/>
-              <line x1="200" y1="150" x2="280" y2="210"/>
-            </g>
-            <g fill="#28A8DF">
-              <circle cx="200" cy="150" r="14"/>
-            </g>
-            <g fill="#C0C0C0">
-              <circle cx="80" cy="60" r="5"/><circle cx="320" cy="70" r="5"/>
-              <circle cx="70" cy="220" r="5"/><circle cx="330" cy="230" r="5"/>
-              <circle cx="140" cy="100" r="3"/><circle cx="260" cy="90" r="3"/>
-              <circle cx="130" cy="210" r="3"/><circle cx="280" cy="210" r="3"/>
-            </g>
-          </svg>
-        </div>
-        <div class="body">
-          <div class="tag">CASE / 02 · DRAKEN SECURITY</div>
-          <h4>Pipeline predecible con agentes de ventas</h4>
-          <div class="industry">Seguridad privada · US</div>
-          <p class="case-desc">
-            Automatización de seguimiento, cotizaciones y marketing. RevOps alineado con ciclo de venta.
-          </p>
-          <div class="stats">
-            <div class="st"><div class="v">2.4×</div><div class="l">Conversión</div></div>
-            <div class="st"><div class="v">−41%</div><div class="l">CAC</div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="case" data-cursor="hover">
-        <div class="cover">
-          <svg class="viz-mesh" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
-            <rect width="400" height="300" fill="#10172A"/>
-            <g stroke="#28A8DF" stroke-width=".5" fill="none" opacity=".3">
-              <path d="M0 80 L 400 80 M0 150 L 400 150 M0 220 L 400 220"/>
-              <path d="M80 0 L 80 300 M200 0 L 200 300 M320 0 L 320 300"/>
-            </g>
-            <g>
-              <rect x="60" y="60" width="120" height="60" fill="none" stroke="#28A8DF" stroke-width="1"/>
-              <rect x="220" y="60" width="120" height="60" fill="#28A8DF" opacity=".15"/>
-              <rect x="60" y="180" width="120" height="60" fill="#28A8DF" opacity=".15"/>
-              <rect x="220" y="180" width="120" height="60" fill="none" stroke="#28A8DF" stroke-width="1"/>
-            </g>
-            <g fill="#28A8DF">
-              <circle cx="80" cy="80" r="2"/><circle cx="240" cy="80" r="2"/>
-              <circle cx="80" cy="200" r="2"/><circle cx="240" cy="200" r="2"/>
-            </g>
-          </svg>
-        </div>
-        <div class="body">
-          <div class="tag">CASE / 03 · URBEXAD</div>
-          <h4>Web, CRM y agente IA integrados</h4>
-          <div class="industry">Arquitectura &amp; diseño · LATAM</div>
-          <p class="case-desc">
-            Ecosistema completo: sitio de conversión, CRM predictivo y agente de IA para clasificación de leads.
-          </p>
-          <div class="stats">
-            <div class="st"><div class="v">4.1×</div><div class="l">Leads calificados</div></div>
-            <div class="st"><div class="v">&lt;2s</div><div class="l">Load time</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== METRICS / IMPACT ==================== -->
-<section class="sec" id="impact">
-  <div class="container">
-    <div class="sec-head reveal">
-      <div class="left">
-        <div class="eyebrow">§ Impacto · La data habla</div>
-        <h2>Cuatro señales<br/>que <span class="cyan">importan.</span></h2>
-      </div>
-      <div class="right">
-        Mediciones reales de despliegues en producción. Lo que no se mide, no se entrega.
-      </div>
-    </div>
-
-    <div class="metrics-grid reveal">
-      <div class="metric-cell">
-        <div class="l">Crecimiento</div>
-        <div class="n">+<span data-count="1100">0</span><span class="accent">K</span></div>
-        <div class="desc">Visibilidad orgánica escalada 12× en 30 días.</div>
-      </div>
-      <div class="metric-cell">
-        <div class="l">Audiencia</div>
-        <div class="n">+<span data-count="4500">0</span><span class="accent">K</span></div>
-        <div class="desc">Impacto a 18,000+ tomadores de decisiones B2B.</div>
-      </div>
-      <div class="metric-cell">
-        <div class="l">Eficiencia</div>
-        <div class="n"><span data-count="91">0</span><span class="accent">%</span></div>
-        <div class="desc">Tasa de conversión impresiones → visitas.</div>
-      </div>
-      <div class="metric-cell">
-        <div class="l">Autoridad</div>
-        <div class="n"><span data-count="16.5">0</span></div>
-        <div class="desc">Índice de liderazgo estratégico desplegado.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== TESTIMONIALS ==================== -->
-<section class="sec sec-alt" id="testimonials">
-  <div class="container">
-    <div class="sec-head reveal">
-      <div class="left">
-        <div class="eyebrow">§ Clientes · Voces del mercado</div>
-        <h2>Lo que dicen<br/>los <span class="cyan">líderes.</span></h2>
-      </div>
-      <div class="right">
-        Operadores que recuperaron tiempo estratégico y aceleraron pipeline.
-      </div>
-    </div>
-
-    <div class="testimonials reveal">
-      <div class="testimonial">
-        <div>
-          <div class="q">"</div>
-          <p>TimeKeepers AI nos dio la tranquilidad operativa que necesitábamos y más clientes.</p>
-        </div>
-        <div>
-          <div class="t-line"></div>
-          <div class="author">Jaime Salanga</div>
-          <div class="role">CEO · Draken Limo</div>
-        </div>
-      </div>
-      <div class="testimonial">
-        <div>
-          <div class="q">"</div>
-          <p>Automatizamos seguimiento, cotizaciones y marketing con agentes de IA. Menos tareas, mejor trazabilidad.</p>
-        </div>
-        <div>
-          <div class="t-line"></div>
-          <div class="author">Jaime Salanga</div>
-          <div class="role">CEO · Draken Security</div>
-        </div>
-      </div>
-      <div class="testimonial">
-        <div>
-          <div class="q">"</div>
-          <p>Integraron web, CRM y agente de IA: leads ordenados, respuestas rápidas, proyectos cerrados con menos esfuerzo.</p>
-        </div>
-        <div>
-          <div class="t-line"></div>
-          <div class="author">Cristian Gómez</div>
-          <div class="role">CEO · UrbexAD</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== FAQ ==================== -->
-<section class="sec" id="faq">
-  <div class="container">
-    <div class="sec-head reveal">
-      <div class="left">
-        <div class="eyebrow">§ FAQ · Preguntas frecuentes</div>
-        <h2>Lo que nos<br/>suelen <span class="cyan">preguntar.</span></h2>
-      </div>
-      <div class="right">
-        Si no encuentras tu pregunta, escríbenos directamente. Respondemos en menos de 24 horas hábiles.
-      </div>
-    </div>
-
-    <div class="faq reveal">
-      <div class="faq-item open">
-        <div class="q"><h5>¿Cuánto tiempo toma desplegar un sistema en producción?</h5><div class="plus">+</div></div>
-        <div class="a">Entre 4 y 8 semanas para la mayoría de los proyectos. Trabajamos en sprints cortos: auditoría inicial (1 semana), diseño y PoC (2–3 semanas), integración y despliegue (2–3 semanas), fine-tuning y entrega (1 semana).</div>
-      </div>
-      <div class="faq-item">
-        <div class="q"><h5>¿Trabajan con empresas fuera de EE.UU. y LATAM?</h5><div class="plus">+</div></div>
-        <div class="a">Nuestro foco está en US y LATAM porque es donde tenemos mayor conocimiento regulatorio y operativo, pero evaluamos proyectos en otras regiones caso por caso. Operamos remote-first desde Naples, FL.</div>
-      </div>
-      <div class="faq-item">
-        <div class="q"><h5>¿Qué pasa con nuestra data? ¿Es segura?</h5><div class="plus">+</div></div>
-        <div class="a">Implementamos estándares de AI Governance desde el día uno: encriptación en tránsito y en reposo, segmentación de modelos, logs auditables y opción de despliegue on-premise o en tu propia cloud cuando la sensibilidad lo requiere.</div>
-      </div>
-      <div class="faq-item">
-        <div class="q"><h5>¿Cómo miden el ROI de un proyecto de automatización?</h5><div class="plus">+</div></div>
-        <div class="a">Antes de construir, definimos KPIs claros: horas manuales eliminadas, reducción de error, ciclo de venta, CAC, accuracy del agente, uptime. Medimos baseline y comparamos mensualmente contra objetivos.</div>
-      </div>
-      <div class="faq-item">
-        <div class="q"><h5>¿Puedo integrar mis herramientas actuales o tengo que cambiarlas?</h5><div class="plus">+</div></div>
-        <div class="a">Integramos con tu stack existente. Trabajamos con HubSpot, Salesforce, Zoho, Monday, Notion, Slack, WhatsApp Business, Google Workspace y la mayoría de APIs modernas. No te obligamos a migrar — orquestamos.</div>
-      </div>
-      <div class="faq-item">
-        <div class="q"><h5>¿Qué incluye la auditoría gratuita de 30 minutos?</h5><div class="plus">+</div></div>
-        <div class="a">Diagnóstico rápido de tus procesos actuales, identificación de los 3 cuellos de botella con mayor ROI para automatizar, y un AI Roadmap preliminar con estimación de tiempos y costos. Sin compromiso.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== CONTACT FORM ==================== -->
-<section class="sec sec-alt" id="contact-form-sec">
-  <div class="container">
-    <div class="contact-grid reveal">
-      <div class="contact-info">
-        <div class="eyebrow">§ Contacto · Agenda auditoría</div>
-        <h3>Hablemos de tus<br/>cuellos de <span class="cy">botella.</span></h3>
-        <p>Completa el formulario y te contactamos en menos de 24 horas hábiles para agendar una auditoría gratuita de 30 minutos.</p>
-        <div class="ch">
-          <div class="row"><div class="k">Email</div><div class="v">hello@timekeepers.ai</div></div>
-          <div class="row"><div class="k">WhatsApp</div><div class="v">+1 (239) XXX-XXXX</div></div>
-          <div class="row"><div class="k">HQ</div><div class="v">Naples, FL · US</div></div>
-          <div class="row"><div class="k">Mercados</div><div class="v">US × LATAM</div></div>
-        </div>
-      </div>
-
-      <form class="contact-form" id="cform">
-        <div class="frm-head">
-          <div class="t">§ Request · Free audit</div>
-          <div class="t muted">01 / 01</div>
-        </div>
-
-        <div class="frm-success" id="frmSuccess">
-          ✓ Mensaje recibido. Te contactamos en &lt; 24h.
-        </div>
-
-        <div class="field-row">
-          <div class="field"><label>Nombre</label><input type="text" required placeholder="Iván Mercado"/></div>
-          <div class="field"><label>Empresa</label><input type="text" required placeholder="Acme Corp"/></div>
-        </div>
-        <div class="field-row">
-          <div class="field"><label>Email corporativo</label><input type="email" required placeholder="ivan@acme.com"/></div>
-          <div class="field"><label>WhatsApp / Tel.</label><input type="tel" placeholder="+1 239 ..."/></div>
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label>Industria</label>
-            <select required><option value="">Seleccionar...</option><option>Servicios profesionales</option><option>E-commerce / Retail</option><option>SaaS / Tech</option><option>Real estate</option><option>Salud</option><option>Finanzas</option><option>Otra</option></select>
-          </div>
-          <div class="field">
-            <label>Servicio de interés</label>
-            <select required><option value="">Seleccionar...</option><option>S/01 · Intelligent Automation</option><option>S/02 · Revenue Intelligence</option><option>S/03 · Digital Assets</option><option>S/04 · AI Strategy</option><option>No estoy seguro</option></select>
-          </div>
-        </div>
-        <div class="field"><label>¿Qué quieres automatizar?</label><textarea placeholder="Describe brevemente el proceso o cuello de botella..."></textarea></div>
-        <button type="submit"><span>Solicitar auditoría</span><span>→</span></button>
-      </form>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== CTA BAND ==================== -->
-<section class="cta-band" id="contact">
+<!-- ==================== FINAL CTA ==================== -->
+<section class="cta-band" id="book-call">
   <div class="glow"></div>
-  <div class="grid-bg"></div>
   <div class="container inner reveal">
-    <div class="eyebrow">§ Contacto · Let's build</div>
-    <h2>¿Listo para<br/>recuperar tu<br/><span class="cyan">tiempo?</span></h2>
-    <p class="sub">Agenda una auditoría gratuita de 30 minutos con nuestro equipo. Identificamos los 3 cuellos de botella con mayor ROI para automatizar.</p>
-    <div class="btns">
-      <a href="mailto:hello@timekeepers.ai" class="btn-primary" data-cursor="hover"><span>hello@timekeepers.ai</span><span>→</span></a>
-      <a href="tel:+12399999999" class="btn-secondary" data-cursor="hover"><span>+1 (239) XXX-XXXX</span></a>
-    </div>
+    <div class="eyebrow">— Book your free call</div>
+    <h2 class="sec-title cta-title">
+      Ready to take control of your<br/>
+      <span class="cyan">time and income?</span>
+    </h2>
+    <a href="#" class="btn-primary cta-final-btn" data-cursor="hover">
+      <span>Book your free call now</span>
+      <span class="arr">→</span>
+    </a>
+    <p class="hero-microcopy">Limited spots available this month</p>
   </div>
 </section>
 
@@ -630,51 +223,49 @@
           <span>TimeKeepers<span class="ai"> AI</span></span>
         </div>
         <p class="footer-tagline">
-          Arquitectos de eficiencia. IA y automatización end-to-end para empresas de US &amp; LATAM.
+          Control your time. Increase your income. Automate your workflow.
         </p>
       </div>
       <div>
-        <h5>Servicios</h5>
+        <h5>Pages</h5>
         <ul>
-          <li><a href="#services">Intelligent Automation</a></li>
-          <li><a href="#services">Revenue Intelligence</a></li>
-          <li><a href="#services">Digital Assets</a></li>
-          <li><a href="#services">AI Strategy</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="cases.html">Cases</a></li>
         </ul>
       </div>
       <div>
-        <h5>Empresa</h5>
-        <ul>
-          <li><a href="#about">Sobre nosotros</a></li>
-          <li><a href="#cases">Casos</a></li>
-          <li><a href="#impact">Impacto</a></li>
-          <li><a href="#contact">Contacto</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Contacto</h5>
+        <h5>Connect</h5>
         <ul>
           <li><a href="mailto:hello@timekeepers.ai">hello@timekeepers.ai</a></li>
-          <li><a href="tel:+12399999999">+1 (239) XXX-XXXX</a></li>
-          <li><span>Naples, FL · US</span></li>
+          <li><a href="#book-call">Book a call</a></li>
         </ul>
       </div>
       <div>
-        <h5>Síguenos</h5>
+        <h5>Social</h5>
         <ul>
           <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
           <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
           <li><a href="#" target="_blank" rel="noopener">X / Twitter</a></li>
-          <li><a href="#" target="_blank" rel="noopener">YouTube</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-copy">
       <div>© 2026 TimeKeepers AI · All rights reserved</div>
-      <div>Automatiza hoy · Crece siempre</div>
+      <div>Naples, FL · US</div>
     </div>
   </div>
 </footer>
+
+<!-- ==================== WHATSAPP FLOATING BUTTON ==================== -->
+<a class="wa-float" href="https://wa.me/12399999999?text=Hi%20TimeKeepers%2C%20I%27d%20like%20to%20know%20more"
+   target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <span class="wa-tooltip">Chat with us</span>
+  <svg class="wa-icon" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+    <path d="M16.003 3C9.374 3 4 8.374 4 15.003c0 2.367.694 4.566 1.886 6.43L4 29l7.764-1.844A11.94 11.94 0 0 0 16.003 27C22.632 27 28 21.626 28 15.003 28 8.374 22.632 3 16.003 3Zm0 21.6a9.55 9.55 0 0 1-4.86-1.323l-.349-.207-4.604 1.094 1.106-4.487-.227-.36A9.55 9.55 0 0 1 6.4 15.003c0-5.305 4.298-9.604 9.603-9.604 5.305 0 9.604 4.299 9.604 9.604 0 5.305-4.299 9.597-9.604 9.597Zm5.27-7.182c-.288-.144-1.704-.84-1.969-.936-.265-.097-.457-.144-.65.144-.193.288-.747.936-.916 1.128-.169.193-.337.216-.625.072-.288-.144-1.218-.449-2.32-1.43-.858-.766-1.437-1.71-1.605-1.998-.169-.288-.018-.443.126-.587.13-.13.288-.337.433-.505.144-.169.193-.288.288-.481.097-.193.048-.36-.024-.505-.072-.144-.65-1.566-.89-2.146-.234-.563-.473-.487-.65-.495l-.553-.01a1.06 1.06 0 0 0-.77.36c-.265.288-1.01.987-1.01 2.408 0 1.421 1.034 2.793 1.178 2.985.144.193 2.034 3.107 4.927 4.36.69.298 1.227.476 1.646.609.692.22 1.322.189 1.82.115.555-.083 1.704-.696 1.945-1.369.24-.673.24-1.249.169-1.369-.072-.12-.265-.193-.553-.337Z"/>
+  </svg>
+</a>
 
 <script src="js/main.js"></script>
 </body>
