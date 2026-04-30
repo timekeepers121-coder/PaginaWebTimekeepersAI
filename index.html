@@ -626,13 +626,36 @@ body::after {
   display: flex; flex-wrap: wrap; gap: 14px;
   margin-bottom: 22px;
 }
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  align-items: center;
+  margin-bottom: 56px;
+}
 .hero-microcopy {
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--silver-muted);
-  margin-bottom: 56px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.hero-microcopy-active { color: var(--silver-node); }
+.hero-microcopy-active .status-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #4ADE80;
+  box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.65);
+  animation: pulseDot 2.2s ease-out infinite;
+  flex-shrink: 0;
+}
+@keyframes pulseDot {
+  0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6); }
+  70% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
 }
 
 .hero-meta {
@@ -1715,13 +1738,22 @@ body::after {
           Agenda tu auditoría gratis
           <i data-lucide="arrow-right"></i>
         </a>
-        <a href="#casos" class="btn btn-secondary">
-          Ver casos de éxito
-          <i data-lucide="play-circle"></i>
+        <a href="https://wa.me/12393673639?text=Hola%20TimeKeepers%20AI%2C%20quiero%20agendar%20mi%20auditor%C3%ADa%20gratis"
+           class="btn btn-secondary"
+           target="_blank" rel="noopener"
+           aria-label="Abrir conversación de WhatsApp">
+          Hablar por WhatsApp
+          <i data-lucide="message-circle"></i>
         </a>
       </div>
 
-      <div class="hero-microcopy reveal" data-stagger="4">30 min · Sin venta forzada · 100% gratis</div>
+      <div class="hero-badges reveal" data-stagger="4">
+        <span class="hero-microcopy">30 min · Sin venta forzada · 100% gratis</span>
+        <span class="hero-microcopy hero-microcopy-active">
+          <span class="status-dot" aria-hidden="true"></span>
+          Clientes activos en Miami · NYC · Bogotá
+        </span>
+      </div>
 
       <div class="hero-meta reveal" data-stagger="5">
         <div class="hero-meta-item">
