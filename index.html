@@ -323,8 +323,8 @@ body::after {
   letter-spacing: 0.02em;
 }
 .nav-logo .logo-mark {
-  width: 36px; height: 36px;
-  border-radius: 9px;
+  width: 40px; height: 40px;
+  border-radius: 10px;
   background: linear-gradient(135deg, var(--dark-panel), var(--dark-deeper));
   border: 1px solid var(--tech-cyan);
   display: grid; place-items: center;
@@ -335,6 +335,14 @@ body::after {
   box-shadow: 0 0 16px var(--tech-cyan-soft), inset 0 1px 0 rgba(255, 255, 255, 0.06);
   position: relative;
   overflow: hidden;
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+.nav-logo .logo-mark img {
+  width: 34px; height: 34px;
+  object-fit: contain;
+  display: block;
+  mix-blend-mode: screen;
+  filter: brightness(1.05) contrast(1.1);
 }
 .nav-logo .logo-mark::after {
   content: '';
@@ -343,6 +351,11 @@ body::after {
   background: linear-gradient(135deg, transparent, var(--tech-cyan-soft), transparent);
   opacity: 0;
   transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.nav-logo:hover .logo-mark {
+  box-shadow: 0 0 22px rgba(40, 168, 223, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  border-color: var(--cyan-glow);
 }
 .nav-logo:hover .logo-mark::after { opacity: 1; }
 .nav-logo .brand-text { display: flex; flex-direction: column; line-height: 1; }
@@ -1880,7 +1893,7 @@ body::after {
 <!-- ====================== NAVBAR ====================== -->
 <header class="nav" id="nav">
   <a href="#hero" class="nav-logo" aria-label="TimeKeepers AI · Inicio">
-    <span class="logo-mark">T</span>
+    <span class="logo-mark"><img src="assets/logo-mark.jpg" alt="" loading="eager" decoding="async" /></span>
     <span class="brand-text">
       <span class="brand">TimeKeepers AI</span>
       <span class="brand-tag">More time for you</span>
@@ -2625,7 +2638,7 @@ body::after {
   <div class="footer-grid">
     <div class="footer-brand-block">
       <a href="#hero" class="nav-logo">
-        <span class="logo-mark">T</span>
+        <span class="logo-mark"><img src="assets/logo-mark.jpg" alt="" loading="eager" decoding="async" /></span>
         <span class="brand-text">
           <span class="brand">TimeKeepers AI</span>
           <span class="brand-tag">More time for you</span>

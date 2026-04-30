@@ -89,8 +89,8 @@ body::after {
   letter-spacing: 0.02em;
 }
 .logo-mark {
-  width: 36px; height: 36px;
-  border-radius: 9px;
+  width: 40px; height: 40px;
+  border-radius: 10px;
   background: linear-gradient(135deg, var(--dark-panel), var(--dark-deeper));
   border: 1px solid var(--tech-cyan);
   display: grid; place-items: center;
@@ -99,6 +99,14 @@ body::after {
   color: var(--tech-cyan);
   font-size: 18px;
   box-shadow: 0 0 16px var(--tech-cyan-soft), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+.logo-mark img {
+  width: 34px; height: 34px;
+  object-fit: contain;
+  display: block;
+  mix-blend-mode: screen;
+  filter: brightness(1.05) contrast(1.1);
 }
 .brand-text { display: flex; flex-direction: column; line-height: 1; }
 .brand-text .brand { color: var(--pure-light); }
