@@ -1983,30 +1983,30 @@ body::after {
       <div class="metric-cell reveal">
         <span class="metric-eyebrow">Crecimiento exponencial</span>
         <div class="metric-value">
-          <span class="unit">+</span><span class="counter" data-target="1.1" data-decimals="1">0</span><span class="unit">K</span>
+          <span class="unit">+</span><span class="counter" data-target="3.2" data-decimals="1">3.2</span><span class="unit">K</span>
         </div>
-        <p class="metric-desc">Visibilidad orgánica escalada 12× en un periodo de 30 días.</p>
+        <p class="metric-desc">Impresiones orgánicas mensuales sostenidas en redes y SEO.</p>
       </div>
       <div class="metric-cell reveal" data-stagger="2">
         <span class="metric-eyebrow">Expansión de audiencia</span>
         <div class="metric-value">
-          <span class="unit">+</span><span class="counter" data-target="4.5" data-decimals="1">0</span><span class="unit">K</span>
+          <span class="unit">+</span><span class="counter" data-target="1.8" data-decimals="1">1.8</span><span class="unit">K</span>
         </div>
-        <p class="metric-desc">Impacto directo a más de 18,000 tomadores de decisiones B2B.</p>
+        <p class="metric-desc">Tomadores de decisiones B2B impactados con nuestros activos.</p>
       </div>
       <div class="metric-cell reveal" data-stagger="3">
         <span class="metric-eyebrow">Eficiencia en visibilidad</span>
         <div class="metric-value">
-          <span class="counter" data-target="91" data-decimals="0">0</span><span class="unit">%</span>
+          <span class="counter" data-target="4.7" data-decimals="1">4.7</span><span class="unit">%</span>
         </div>
-        <p class="metric-desc">Tasa de conversión de impresiones a visitas de perfil.</p>
+        <p class="metric-desc">CTR sostenido de impresión a visita de perfil.</p>
       </div>
       <div class="metric-cell reveal" data-stagger="4">
         <span class="metric-eyebrow">Índice de autoridad</span>
         <div class="metric-value">
-          <span class="counter" data-target="16.5" data-decimals="1">0</span>
+          <span class="counter" data-target="12" data-decimals="0">12</span>
         </div>
-        <p class="metric-desc">Volumen de activos de liderazgo estratégico desplegados.</p>
+        <p class="metric-desc">Activos de liderazgo estratégico desplegados.</p>
       </div>
     </div>
   </section>
@@ -2436,24 +2436,29 @@ body::after {
   // ---------------------------------------------------------------
   const counters = document.querySelectorAll('.counter');
   const easeOutExpo = function (t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); };
+  function formatVal(v, decimals) {
+    return decimals > 0 ? v.toFixed(decimals) : Math.round(v).toString();
+  }
   function animateCounter(el) {
     const target = parseFloat(el.dataset.target) || 0;
     const decimals = parseInt(el.dataset.decimals || '0', 10);
+    // The HTML already contains the final value as fallback. If reduced motion
+    // is on, leave it. Otherwise, drop to 0 and animate up.
+    if (reduceMotion) {
+      el.textContent = formatVal(target, decimals);
+      return;
+    }
+    el.textContent = formatVal(0, decimals);
     const dur = 1800;
     const start = performance.now();
     function tick(now) {
       const p = Math.min(1, (now - start) / dur);
       const eased = easeOutExpo(p);
-      const v = target * eased;
-      el.textContent = decimals > 0 ? v.toFixed(decimals) : Math.round(v).toString();
+      el.textContent = formatVal(target * eased, decimals);
       if (p < 1) requestAnimationFrame(tick);
-      else el.textContent = decimals > 0 ? target.toFixed(decimals) : Math.round(target).toString();
+      else el.textContent = formatVal(target, decimals);
     }
-    if (reduceMotion) {
-      el.textContent = decimals > 0 ? target.toFixed(decimals) : Math.round(target).toString();
-    } else {
-      requestAnimationFrame(tick);
-    }
+    requestAnimationFrame(tick);
   }
   if (counters.length) {
     const cio = new IntersectionObserver(function (entries) {
@@ -2464,8 +2469,20 @@ body::after {
           cio.unobserve(e.target);
         }
       });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.2, rootMargin: '0px 0px -10% 0px' });
     counters.forEach(function (el) { cio.observe(el); });
+    // Safety net: if the observer never fires (mobile zoom edge cases,
+    // legacy browsers, sticky scroll), force the final value after 4s.
+    setTimeout(function () {
+      counters.forEach(function (el) {
+        if (!el.dataset.done) {
+          el.dataset.done = '1';
+          const target = parseFloat(el.dataset.target) || 0;
+          const decimals = parseInt(el.dataset.decimals || '0', 10);
+          el.textContent = formatVal(target, decimals);
+        }
+      });
+    }, 4000);
   }
 
   // ---------------------------------------------------------------
