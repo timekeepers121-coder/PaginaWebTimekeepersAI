@@ -841,6 +841,51 @@ body::after {
     0 0 60px rgba(40, 168, 223, 0.12);
 }
 
+/* Visual proof image inside each service card */
+.service-image {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  margin: -36px -36px 24px;
+  background: linear-gradient(135deg, var(--dark-panel), var(--dark-deeper));
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.service-image::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(40,168,223,0.18), transparent 55%),
+    radial-gradient(circle at 75% 75%, rgba(124,92,255,0.08), transparent 60%);
+}
+.service-image img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.service-image-placeholder {
+  position: absolute; inset: 0; z-index: 1;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 12px;
+  padding: 20px;
+  text-align: center;
+}
+.service-image-placeholder svg {
+  width: 40px; height: 40px;
+  color: var(--tech-cyan);
+  opacity: 0.55;
+}
+.service-image-placeholder span {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--silver-muted);
+  max-width: 240px;
+  line-height: 1.5;
+}
+@media (max-width: 900px) {
+  .service-image { margin: -36px -36px 22px; }
+}
+
 .service-card-head {
   display: flex;
   justify-content: space-between;
@@ -2005,6 +2050,14 @@ body::after {
       <div class="services-grid">
 
         <article class="service-card reveal">
+          <!-- TODO: replace placeholder with real image. Asset: assets/services/automation.webp (1280x720, WebP).
+               Sugerencia: captura del workflow n8n con cotizacion automatica + WhatsApp Business. -->
+          <div class="service-image" aria-hidden="true">
+            <div class="service-image-placeholder">
+              <i data-lucide="workflow"></i>
+              <span>Workflow n8n · Automatización end-to-end</span>
+            </div>
+          </div>
           <div class="service-card-head">
             <span class="service-num">S/01</span>
             <span class="service-icon"><i data-lucide="workflow"></i></span>
@@ -2032,6 +2085,14 @@ body::after {
         </article>
 
         <article class="service-card reveal" data-stagger="2">
+          <!-- TODO: replace placeholder with real image. Asset: assets/services/marketing.webp (1280x720, WebP).
+               Sugerencia: dashboard Meta Ads o GA4 con curva de conversion al alza. -->
+          <div class="service-image" aria-hidden="true">
+            <div class="service-image-placeholder">
+              <i data-lucide="bar-chart-3"></i>
+              <span>Dashboard Meta Ads · GA4 · Pipeline B2B</span>
+            </div>
+          </div>
           <div class="service-card-head">
             <span class="service-num">S/02</span>
             <span class="service-icon"><i data-lucide="trending-up"></i></span>
@@ -2059,6 +2120,14 @@ body::after {
         </article>
 
         <article class="service-card reveal" data-stagger="3">
+          <!-- TODO: replace placeholder with real image. Asset: assets/services/web.webp (1280x720, WebP).
+               Sugerencia: captura de Lighthouse score 95+/100 en Performance, SEO, Accessibility. -->
+          <div class="service-image" aria-hidden="true">
+            <div class="service-image-placeholder">
+              <i data-lucide="gauge"></i>
+              <span>Lighthouse 95+ · Carga &lt; 2s · SEO técnico</span>
+            </div>
+          </div>
           <div class="service-card-head">
             <span class="service-num">S/03</span>
             <span class="service-icon"><i data-lucide="layout-dashboard"></i></span>
@@ -2085,6 +2154,14 @@ body::after {
         </article>
 
         <article class="service-card reveal" data-stagger="4">
+          <!-- TODO: replace placeholder with real image. Asset: assets/services/strategy.webp (1280x720, WebP).
+               Sugerencia: AI Roadmap o diagrama de arquitectura con LLMs + CRM + workflows. -->
+          <div class="service-image" aria-hidden="true">
+            <div class="service-image-placeholder">
+              <i data-lucide="git-branch"></i>
+              <span>AI Roadmap · Diagrama de arquitectura</span>
+            </div>
+          </div>
           <div class="service-card-head">
             <span class="service-num">S/04</span>
             <span class="service-icon"><i data-lucide="target"></i></span>
