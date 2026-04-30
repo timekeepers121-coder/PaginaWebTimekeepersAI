@@ -1973,6 +1973,58 @@ body::after {
 }
 .btn:focus-visible { outline-offset: 4px; }
 </style>
+<!--
+  ===========================================================================
+  TRACKING — Activar reemplazando las IDs marcadas y descomentando el bloque.
+  GA4 ID         : G-XXXXXXXXXX        (Google Analytics 4)
+  Meta Pixel     : PIXEL_ID             (Facebook / Meta Ads)
+  Clarity ID     : CLARITY_ID           (Microsoft Clarity heatmaps)
+
+  Eventos custom disparados desde JS via track(name, params):
+    - click_hero_cta   (Agenda tu auditoria gratis)
+    - click_whatsapp   (cualquier link wa.me/) + fbq('track','Contact')
+    - click_email      (cualquier mailto:)
+    - lead_submit      (form enviado con exito) + fbq('track','Lead')
+  ===========================================================================
+-->
+
+<!-- Google Analytics 4 -->
+<!--
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX', { 'anonymize_ip': true });
+</script>
+-->
+
+<!-- Meta Pixel -->
+<!--
+<script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', 'PIXEL_ID');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt=""
+  src="https://www.facebook.com/tr?id=PIXEL_ID&ev=PageView&noscript=1"/></noscript>
+-->
+
+<!-- Microsoft Clarity -->
+<!--
+<script type="text/javascript">
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "CLARITY_ID");
+</script>
+-->
+
 </head>
 <body>
 
@@ -2812,6 +2864,47 @@ body::after {
 (function () {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isTouch = window.matchMedia('(hover: none)').matches;
+
+  // ---------------------------------------------------------------
+  // Tracking helper — safe no-op if providers not loaded
+  // ---------------------------------------------------------------
+  function track(eventName, params) {
+    params = params || {};
+    try {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', eventName, params);
+      }
+      if (typeof window.fbq === 'function') {
+        window.fbq('trackCustom', eventName, params);
+      }
+      if (typeof window.clarity === 'function') {
+        window.clarity('event', eventName);
+      }
+    } catch (_) { /* swallow */ }
+  }
+
+  // Hero CTA
+  const heroCta = document.getElementById('heroCta');
+  if (heroCta) {
+    heroCta.addEventListener('click', function () {
+      track('click_hero_cta', { label: 'Agenda tu auditoria gratis' });
+    });
+  }
+
+  // WhatsApp links (any wa.me link, including the floating button if present)
+  document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      track('click_whatsapp', { url: a.href });
+      if (typeof window.fbq === 'function') window.fbq('track', 'Contact');
+    });
+  });
+
+  // Email mailto: links
+  document.querySelectorAll('a[href^="mailto:"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      track('click_email', { email: a.href.replace(/^mailto:/, '') });
+    });
+  });
 
   // ---------------------------------------------------------------
   // Lucide icons render
