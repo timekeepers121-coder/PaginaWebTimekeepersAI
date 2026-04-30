@@ -1729,14 +1729,25 @@ body::after {
   display: none;
   background: rgba(74, 222, 128, 0.08);
   border: 1px solid rgba(74, 222, 128, 0.4);
-  color: #6ee7b7;
-  padding: 16px 20px;
+  color: #d1fae5;
+  padding: 18px 22px;
   border-radius: 10px;
-  font-family: var(--font-display);
-  font-size: 14px;
-  font-weight: 500;
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  line-height: 1.55;
   margin-bottom: 18px;
 }
+.form-success strong {
+  color: #6ee7b7;
+  font-weight: 600;
+  margin-right: 4px;
+}
+.form-success a {
+  color: #6ee7b7;
+  border-bottom: 1px solid rgba(110, 231, 183, 0.4);
+  transition: border-color 0.2s ease;
+}
+.form-success a:hover { border-bottom-color: #6ee7b7; }
 .form-success.on { display: block; }
 
 /* Contact info cards */
@@ -2023,6 +2034,11 @@ body::after {
     y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
   })(window, document, "clarity", "script", "CLARITY_ID");
 </script>
+-->
+
+<!-- reCAPTCHA v3 (invisible) — descomentar y reemplazar SITE_KEY al activar -->
+<!--
+<script src="https://www.google.com/recaptcha/api.js?render=TU_SITE_KEY_RECAPTCHA_V3" defer></script>
 -->
 
 </head>
@@ -2714,7 +2730,9 @@ body::after {
       <div class="contact-grid">
         <form class="contact-form reveal" id="leadForm" novalidate>
           <div class="form-success" id="formSuccess" role="status" aria-live="polite">
-            ✓ Recibido. Te respondemos en menos de 24h.
+            <strong>✓ Recibido.</strong> Te respondemos en menos de 24h. Mientras tanto, puedes
+            <a href="https://wa.me/12393673639?text=Hola%20TimeKeepers%20AI%2C%20acabo%20de%20enviar%20el%20formulario"
+               target="_blank" rel="noopener">escribirnos por WhatsApp</a>.
           </div>
 
           <div class="form-row">
@@ -3113,23 +3131,32 @@ body::after {
   });
 
   // ---------------------------------------------------------------
-  // Form validation
+  // Form validation + webhook + reCAPTCHA + tracking
   // ---------------------------------------------------------------
+  // TODO: replace with real n8n webhook URL. The webhook should:
+  //   1. Save row in Google Sheets
+  //   2. Notify WhatsApp +1 (239) 367-3639
+  //   3. Send auto-reply email from timekeepers121@gmail.com
+  const WEBHOOK_URL = 'TU_WEBHOOK_N8N_AQUI';
+  // TODO: replace with real reCAPTCHA v3 site key (and uncomment script in <head>)
+  const RECAPTCHA_SITE_KEY = 'TU_SITE_KEY_RECAPTCHA_V3';
+
   const form = document.getElementById('leadForm');
   if (form) {
     const successEl = document.getElementById('formSuccess');
+    const submitBtn = form.querySelector('button[type=submit]');
 
     function validateField(field) {
       const wrap = field.closest('.form-field');
       let valid = true;
       const v = (field.value || '').trim();
       if (!v) valid = false;
-      if (field.type === 'email') {
+      else if (field.type === 'email') {
         valid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(v);
       } else if (field.type === 'tel') {
-        valid = /^[+\d][\d\s\-()]{6,}$/.test(v);
-      }
-      if (field.tagName === 'TEXTAREA') {
+        // Require minimum 8 digits (per spec)
+        valid = v.replace(/\D/g, '').length >= 8;
+      } else if (field.tagName === 'TEXTAREA') {
         valid = v.length >= 4;
       }
       wrap.classList.toggle('error', !valid);
@@ -3145,8 +3172,24 @@ body::after {
       });
     });
 
+    function executeRecaptcha() {
+      return new Promise(function (resolve) {
+        if (typeof window.grecaptcha === 'undefined') return resolve(null);
+        try {
+          window.grecaptcha.ready(function () {
+            window.grecaptcha
+              .execute(RECAPTCHA_SITE_KEY, { action: 'lead_submit' })
+              .then(resolve)
+              .catch(function () { resolve(null); });
+          });
+        } catch (_) { resolve(null); }
+      });
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+
+      // Validate
       let allValid = true;
       const payload = {};
       form.querySelectorAll('input, textarea').forEach(function (f) {
@@ -3159,16 +3202,71 @@ body::after {
         if (firstError) firstError.focus();
         return;
       }
-      console.log('Lead payload:', payload);
-      successEl.classList.add('on');
-      form.querySelectorAll('input, textarea').forEach(function (f) {
-        f.value = '';
-        f.closest('.form-field').classList.remove('valid', 'error');
+
+      // Loading state
+      const originalHtml = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.setAttribute('aria-busy', 'true');
+      submitBtn.innerHTML = '<span>Enviando...</span>';
+
+      // Metadata
+      payload.source = 'timekeepersia.com';
+      payload.url = window.location.href;
+      payload.referrer = document.referrer || '';
+      payload.user_agent = navigator.userAgent;
+      payload.timestamp = new Date().toISOString();
+
+      executeRecaptcha().then(function (token) {
+        if (token) payload.recaptcha_token = token;
+
+        // Send to webhook (or simulate if not configured yet)
+        const webhookConfigured = WEBHOOK_URL && WEBHOOK_URL !== 'TU_WEBHOOK_N8N_AQUI';
+        const sendPromise = webhookConfigured
+          ? fetch(WEBHOOK_URL, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+              mode: 'cors'
+            }).then(function (res) { return res.ok; })
+          : Promise.resolve(true); // dev mode
+
+        if (!webhookConfigured) {
+          console.log('Lead payload (webhook pendiente):', payload);
+        }
+
+        sendPromise.then(function (success) {
+          submitBtn.disabled = false;
+          submitBtn.removeAttribute('aria-busy');
+          submitBtn.innerHTML = originalHtml;
+          if (window.lucide) window.lucide.createIcons();
+
+          if (success) {
+            track('lead_submit', { has_message: (payload.message || '').length > 0 });
+            if (typeof window.fbq === 'function') window.fbq('track', 'Lead');
+
+            successEl.classList.add('on');
+            form.querySelectorAll('input, textarea').forEach(function (f) {
+              f.value = '';
+              f.closest('.form-field').classList.remove('valid', 'error');
+            });
+            successEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            setTimeout(function () { successEl.classList.remove('on'); }, 12000);
+          } else {
+            try {
+              alert('No pudimos enviar el mensaje ahora. Intenta de nuevo o escríbenos por WhatsApp.');
+            } catch (_) {}
+          }
+        }).catch(function (err) {
+          console.error('Webhook error:', err);
+          submitBtn.disabled = false;
+          submitBtn.removeAttribute('aria-busy');
+          submitBtn.innerHTML = originalHtml;
+          if (window.lucide) window.lucide.createIcons();
+          try {
+            alert('No pudimos enviar el mensaje ahora. Intenta de nuevo o escríbenos por WhatsApp.');
+          } catch (_) {}
+        });
       });
-      setTimeout(function () { successEl.classList.remove('on'); }, 6000);
-      try {
-        alert('✓ Recibido. Te respondemos en menos de 24h.');
-      } catch (_) {}
     });
   }
 
