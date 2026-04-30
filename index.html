@@ -1228,6 +1228,161 @@ body::after {
 }
 
 /* =====================================================================
+   CASOS DE EXITO (full case studies)
+   ===================================================================== */
+.casos-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: 24px;
+}
+.case-study {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition:
+    transform 500ms var(--ease-out-expo),
+    border-color 500ms var(--ease-out-expo),
+    box-shadow 500ms var(--ease-out-expo);
+}
+.case-study:hover {
+  transform: translateY(-4px);
+  border-color: var(--glass-border-hover);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.4), 0 0 60px rgba(40,168,223,0.10);
+}
+.case-image {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, var(--dark-panel), var(--dark-deeper));
+  border-right: 1px solid var(--border-subtle);
+  display: grid; place-items: center;
+  overflow: hidden;
+}
+.case-image::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(40,168,223,0.15), transparent 55%),
+    radial-gradient(circle at 75% 75%, rgba(124,92,255,0.08), transparent 60%);
+}
+.case-image-placeholder {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  padding: 24px;
+  text-align: center;
+}
+.case-image-placeholder svg {
+  width: 44px; height: 44px;
+  color: var(--tech-cyan);
+  opacity: 0.55;
+}
+.case-image-placeholder span {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--silver-muted);
+  max-width: 280px;
+  line-height: 1.5;
+}
+.case-image img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.case-body {
+  padding: 36px 38px;
+  display: flex; flex-direction: column;
+  gap: 20px;
+}
+.case-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--tech-cyan);
+  font-weight: 500;
+}
+.case-block { display: flex; flex-direction: column; gap: 6px; }
+.case-block .case-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--silver-muted);
+}
+.case-block p {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--silver-node);
+  font-weight: 300;
+}
+.case-block:first-of-type {
+  padding-top: 16px;
+  border-top: 1px solid var(--border-subtle);
+}
+.case-kpis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 18px 0;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.case-kpi { display: flex; flex-direction: column; gap: 4px; }
+.case-kpi .v {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 24px;
+  color: var(--tech-cyan);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.case-kpi .l {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--silver-muted);
+  line-height: 1.4;
+}
+.case-quote {
+  border-left: 2px solid var(--tech-cyan);
+  padding: 4px 0 4px 18px;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--pure-light);
+  font-weight: 400;
+  font-style: normal;
+}
+.case-quote cite {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--silver-muted);
+  margin-top: 12px;
+  font-style: normal;
+}
+.case-quote cite strong { color: var(--pure-light); font-weight: 600; }
+
+@media (max-width: 900px) {
+  .case-study { grid-template-columns: 1fr; }
+  .case-image { border-right: none; border-bottom: 1px solid var(--border-subtle); }
+  .case-kpis { grid-template-columns: 1fr; gap: 10px; padding: 16px 0; }
+  .case-body { padding: 26px 24px; gap: 16px; }
+  .casos-grid { gap: 22px; }
+}
+
+/* =====================================================================
    FAQ
    ===================================================================== */
 .faq { background: var(--dark-deeper); }
@@ -1671,8 +1826,8 @@ body::after {
   <a href="#servicios" class="section-dot" data-label="Servicios" aria-label="Servicios"></a>
   <a href="#filosofia" class="section-dot" data-label="Filosofía" aria-label="Filosofía"></a>
   <a href="#metricas" class="section-dot" data-label="Impacto" aria-label="Impacto"></a>
-  <a href="#proceso" class="section-dot" data-label="Proceso" aria-label="Proceso"></a>
   <a href="#casos" class="section-dot" data-label="Casos" aria-label="Casos"></a>
+  <a href="#proceso" class="section-dot" data-label="Proceso" aria-label="Proceso"></a>
   <a href="#faq" class="section-dot" data-label="FAQ" aria-label="FAQ"></a>
   <a href="#contacto" class="section-dot" data-label="Contacto" aria-label="Contacto"></a>
 </nav>
@@ -2036,6 +2191,137 @@ body::after {
   </section>
 
 
+  <!-- ====================== CASOS DE EXITO ====================== -->
+  <section class="casos section-slide" id="casos">
+    <div class="services-wrap">
+      <header class="services-head">
+        <div class="eyebrow reveal">Casos de éxito · Sistemas en producción</div>
+        <h2 class="section-title reveal" data-stagger="2">
+          Lo que ya está <span class="serif-italic">funcionando</span>.
+        </h2>
+        <p class="section-sub reveal" data-stagger="3">
+          Tres operaciones reales que pasaron de manual a autónomo. Stack, problema y resultados verificables — sin números inflados.
+        </p>
+      </header>
+
+      <div class="casos-grid">
+
+        <!-- ---------- CASE 01 · DRAKEN LIMO ---------- -->
+        <article class="case-study reveal">
+          <div class="case-image">
+            <!-- TODO: replace placeholder with real screenshot at 1600x900 (WebP).
+                 Asset path: assets/cases/draken-limo.webp
+                 Sugerencia: captura del workflow n8n de WhatsApp Business + cotización automática. -->
+            <div class="case-image-placeholder">
+              <i data-lucide="message-square"></i>
+              <span>Workflow n8n + WhatsApp · Draken Limo</span>
+            </div>
+          </div>
+          <div class="case-body">
+            <div class="case-tag">Draken Limo · Miami / NYC · Transporte ejecutivo</div>
+
+            <div class="case-block">
+              <span class="case-label">Problema</span>
+              <p>Seguimiento manual de cotizaciones por WhatsApp, sin trazabilidad ni continuidad de marca.</p>
+            </div>
+
+            <div class="case-block">
+              <span class="case-label">Solución</span>
+              <p>Agente IA en WhatsApp Business que califica y cotiza 24/7. Parrilla de contenido automatizada con n8n y campañas Meta Ads conectadas al pipeline.</p>
+            </div>
+
+            <div class="case-kpis" role="list">
+              <div class="case-kpi" role="listitem"><span class="v">↓</span><span class="l">Tiempo de respuesta</span></div>
+              <div class="case-kpi" role="listitem"><span class="v">↑</span><span class="l">Leads cualificados</span></div>
+              <div class="case-kpi" role="listitem"><span class="v">✓</span><span class="l">Marca consistente</span></div>
+            </div>
+
+            <blockquote class="case-quote">
+              "TimeKeepers AI nos dio la tranquilidad operativa que necesitábamos y más clientes."
+              <cite><strong>Jaime Salanga</strong> · CEO, Draken Limo</cite>
+            </blockquote>
+          </div>
+        </article>
+
+        <!-- ---------- CASE 02 · DRAKEN SECURITY ---------- -->
+        <article class="case-study reveal" data-stagger="2">
+          <div class="case-image">
+            <!-- TODO: replace placeholder with real screenshot at 1600x900 (WebP).
+                 Asset path: assets/cases/draken-security.webp
+                 Sugerencia: captura del CRM con pipeline + agentes IA de seguimiento. -->
+            <div class="case-image-placeholder">
+              <i data-lucide="shield-check"></i>
+              <span>CRM + agentes IA · Draken Security</span>
+            </div>
+          </div>
+          <div class="case-body">
+            <div class="case-tag">Draken Security · Seguridad privada premium</div>
+
+            <div class="case-block">
+              <span class="case-label">Problema</span>
+              <p>Pipeline comercial sin trazabilidad: oportunidades perdidas en el seguimiento.</p>
+            </div>
+
+            <div class="case-block">
+              <span class="case-label">Solución</span>
+              <p>CRM centralizado, agentes IA de seguimiento por etapa y automatización de cotizaciones B2B. Cada lead deja huella, cada deal tiene dueño y SLA.</p>
+            </div>
+
+            <div class="case-kpis" role="list">
+              <div class="case-kpi" role="listitem"><span class="v">✓</span><span class="l">Pipeline visible</span></div>
+              <div class="case-kpi" role="listitem"><span class="v">↓</span><span class="l">Tareas manuales</span></div>
+              <div class="case-kpi" role="listitem"><span class="v">↑</span><span class="l">Cierres comerciales</span></div>
+            </div>
+
+            <blockquote class="case-quote">
+              "Automatizamos seguimiento, cotizaciones y marketing con agentes de IA. Pipeline más sólido."
+              <cite><strong>Jaime Salanga</strong> · CEO, Draken Security</cite>
+            </blockquote>
+          </div>
+        </article>
+
+        <!-- ---------- CASE 03 · URBEXAD ---------- -->
+        <article class="case-study reveal" data-stagger="3">
+          <div class="case-image">
+            <!-- TODO: replace placeholder with real screenshot at 1600x900 (WebP).
+                 Asset path: assets/cases/urbexad.webp
+                 Sugerencia: web del cliente + dashboard CRM + parrilla de contenido. -->
+            <div class="case-image-placeholder">
+              <i data-lucide="layout-template"></i>
+              <span>Web + CRM + IA · UrbexAD</span>
+            </div>
+          </div>
+          <div class="case-body">
+            <div class="case-tag">UrbexAD · Bogotá · Arquitectura &amp; diseño</div>
+
+            <div class="case-block">
+              <span class="case-label">Problema</span>
+              <p>Leads desordenados, respuestas lentas y proyectos perdidos por falta de proceso.</p>
+            </div>
+
+            <div class="case-block">
+              <span class="case-label">Solución</span>
+              <p>Ecosistema integrado: sitio web de conversión, CRM con scoring, agente IA de calificación y parrilla de contenido automatizada en redes.</p>
+            </div>
+
+            <div class="case-kpis" role="list">
+              <div class="case-kpi" role="listitem"><span class="v">✓</span><span class="l">Leads ordenados</span></div>
+              <div class="case-kpi" role="listitem"><span class="v">↓</span><span class="l">Tiempo de respuesta</span></div>
+              <div class="case-kpi" role="listitem"><span class="v">↑</span><span class="l">Proyectos cerrados</span></div>
+            </div>
+
+            <blockquote class="case-quote">
+              "Integraron web, CRM y agente de IA: leads ordenados, respuestas rápidas."
+              <cite><strong>Cristian Gómez</strong> · CEO, UrbexAD</cite>
+            </blockquote>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
   <!-- ====================== PROCESS ====================== -->
   <section class="process section-slide" id="proceso">
     <div class="process-wrap">
@@ -2077,52 +2363,6 @@ body::after {
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-
-  <!-- ====================== SOCIAL PROOF ====================== -->
-  <section class="testimonials section-slide" id="casos">
-    <header class="services-head">
-      <div class="eyebrow reveal">Voces del mercado</div>
-      <h2 class="section-title reveal" data-stagger="2">
-        Lo que dicen los <span class="serif-italic">líderes</span>.
-      </h2>
-    </header>
-
-    <div class="testimonials-grid">
-      <article class="testimonial-card reveal">
-        <div class="quote-mark">"</div>
-        <div class="testimonial-tag">Draken Limo · Transporte ejecutivo · Miami / NYC</div>
-        <p class="quote-text">TimeKeepers AI nos dio la tranquilidad operativa que necesitábamos y más clientes.</p>
-        <div class="testimonial-divider"></div>
-        <div class="testimonial-author">
-          <span class="name">Jaime Salanga</span>
-          <span class="role">CEO · Draken Limo</span>
-        </div>
-      </article>
-
-      <article class="testimonial-card reveal" data-stagger="2">
-        <div class="quote-mark">"</div>
-        <div class="testimonial-tag">Draken Security · Seguridad privada premium</div>
-        <p class="quote-text">Automatizamos seguimiento, cotizaciones y marketing con agentes de IA. Menos tareas, mejor trazabilidad, pipeline más sólido.</p>
-        <div class="testimonial-divider"></div>
-        <div class="testimonial-author">
-          <span class="name">Jaime Salanga</span>
-          <span class="role">CEO · Draken Security</span>
-        </div>
-      </article>
-
-      <article class="testimonial-card reveal" data-stagger="3">
-        <div class="quote-mark">"</div>
-        <div class="testimonial-tag">UrbexAD · Arquitectura &amp; Diseño · Bogotá</div>
-        <p class="quote-text">Integraron web, CRM y agente de IA: leads ordenados, respuestas rápidas, proyectos cerrados con menos esfuerzo.</p>
-        <div class="testimonial-divider"></div>
-        <div class="testimonial-author">
-          <span class="name">Cristian Gómez</span>
-          <span class="role">CEO · UrbexAD</span>
-        </div>
-      </article>
     </div>
   </section>
 
@@ -2530,7 +2770,7 @@ body::after {
   // ---------------------------------------------------------------
   // Section dots indicator
   // ---------------------------------------------------------------
-  const sectionIds = ['hero', 'problem', 'servicios', 'filosofia', 'metricas', 'proceso', 'casos', 'faq', 'contacto'];
+  const sectionIds = ['hero', 'problem', 'servicios', 'filosofia', 'metricas', 'casos', 'proceso', 'faq', 'contacto'];
   const dots = document.querySelectorAll('.section-dot');
   if (dots.length && sectionIds.length) {
     const sections = sectionIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
