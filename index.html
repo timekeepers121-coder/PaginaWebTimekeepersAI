@@ -922,21 +922,62 @@ body::after {
 }
 
 /* =====================================================================
-   SERVICES (4 cards)
+   SERVICES (4 cards — horizontal layout)
    ===================================================================== */
-.services-wrap { max-width: 1280px; margin: 0 auto; width: 100%; }
+.services-wrap { max-width: 1400px; margin: 0 auto; width: 100%; }
 .services-head { max-width: 880px; }
+
+/* Desktop: 4 columns side-by-side */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 22px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
   margin-top: 16px;
 }
-@media (max-width: 900px) { .services-grid { grid-template-columns: 1fr; } }
+
+/* Tablet & Mobile: horizontal scroll carousel */
+@media (max-width: 1024px) {
+  .services-grid {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 14px;
+    padding-bottom: 16px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .services-grid::-webkit-scrollbar { display: none; }
+  .services-grid .service-card,
+  .services-grid a.service-card {
+    flex: 0 0 80vw;
+    max-width: 340px;
+    scroll-snap-align: start;
+  }
+}
+@media (max-width: 480px) {
+  .services-grid .service-card,
+  .services-grid a.service-card {
+    flex: 0 0 88vw;
+    max-width: 300px;
+  }
+}
+
+/* Scroll hint — only visible on touch/mobile */
+.services-scroll-hint {
+  display: none;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--silver-muted);
+  margin-bottom: 10px;
+}
+@media (max-width: 1024px) { .services-scroll-hint { display: block; } }
 
 .service-card {
   position: relative;
-  padding: 36px;
+  padding: 22px;
   background: var(--glass-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -968,8 +1009,8 @@ body::after {
 /* Visual proof image inside each service card */
 .service-image {
   position: relative;
-  aspect-ratio: 3 / 2;
-  margin: -36px -36px 24px;
+  aspect-ratio: 4 / 3;
+  margin: -22px -22px 18px;
   background: linear-gradient(135deg, var(--dark-panel), var(--dark-deeper));
   overflow: hidden;
   border-bottom: 1px solid var(--border-subtle);
@@ -1007,7 +1048,7 @@ body::after {
   line-height: 1.5;
 }
 @media (max-width: 900px) {
-  .service-image { margin: -36px -36px 22px; }
+  .service-image { margin: -22px -22px 18px; }
 }
 
 .service-card-head {
@@ -1024,17 +1065,17 @@ body::after {
   font-weight: 500;
 }
 .service-card .service-icon {
-  width: 56px; height: 56px;
-  border-radius: 14px;
+  width: 44px; height: 44px;
+  border-radius: 12px;
   background: linear-gradient(135deg, var(--tech-cyan-soft), transparent);
   border: 1px solid var(--tech-cyan);
   display: grid; place-items: center;
   color: var(--tech-cyan);
-  box-shadow: 0 0 22px rgba(40, 168, 223, 0.18);
+  box-shadow: 0 0 18px rgba(40, 168, 223, 0.18);
   transition: transform 0.5s var(--ease-out-expo);
 }
 .service-card:hover .service-icon { transform: scale(1.08) rotate(-3deg); }
-.service-card .service-icon svg { width: 28px; height: 28px; }
+.service-card .service-icon svg { width: 22px; height: 22px; }
 
 .service-divider {
   width: 40px; height: 2px;
@@ -1048,11 +1089,11 @@ body::after {
 .service-card h3 {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 22px;
-  line-height: 1.15;
+  font-size: 18px;
+  line-height: 1.2;
   letter-spacing: -0.02em;
   color: var(--pure-light);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 .service-card h3 .serif-italic {
   font-family: var(--font-serif);
@@ -1062,32 +1103,32 @@ body::after {
 }
 .service-category {
   font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.24em;
+  font-size: 9px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--silver-muted);
-  margin-bottom: 18px;
+  margin-bottom: 12px;
 }
 .service-card p {
-  font-size: 13px;
-  line-height: 1.6;
+  font-size: 12.5px;
+  line-height: 1.55;
   color: var(--silver-node);
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 .service-metrics {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  padding: 20px 0;
+  gap: 8px;
+  padding: 14px 0;
   border-top: 1px solid var(--border-subtle);
   border-bottom: 1px solid var(--border-subtle);
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
 .service-metric { display: flex; flex-direction: column; gap: 4px; }
 .service-metric .v {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 22px;
+  font-size: 17px;
   letter-spacing: -0.02em;
   color: var(--tech-cyan);
   line-height: 1;
@@ -2244,6 +2285,8 @@ body::after {
         </p>
       </header>
 
+      <p class="services-scroll-hint" aria-hidden="true">Desliza para ver más →</p>
+
       <div class="services-grid">
 
         <article class="service-card reveal">
@@ -2281,7 +2324,7 @@ body::after {
           </div>
         </article>
 
-        <a href="Time keepers- landing marketing.html" class="service-card reveal" data-stagger="2" style="display:block; text-decoration:none; color:inherit; cursor:pointer;">
+        <a href="../estees/timekeepers-landing-marketing.html" class="service-card reveal" data-stagger="2" style="display:block; text-decoration:none; color:inherit; cursor:pointer;">
           <!-- TODO: replace placeholder with real image. Asset: assets/services/marketing.webp (1280x720, WebP).
                Sugerencia: dashboard Meta Ads o GA4 con curva de conversion al alza. -->
           <div class="service-image" aria-hidden="true">
