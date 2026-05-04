@@ -283,8 +283,9 @@ body::after {
 .eyebrow::before {
   content: '';
   width: 30px;
-  height: 1px;
+  height: 2px;
   background: var(--tech-cyan);
+  border-radius: 99px;
 }
 
 .section-title {
@@ -313,20 +314,20 @@ body::after {
 
 .section-sub {
   font-family: var(--font-body);
-  font-size: clamp(17px, 1.3vw, 20px);
+  font-size: clamp(15px, 1.1vw, 17px);
   font-weight: 300;
   color: var(--silver-node);
   max-width: 720px;
   line-height: 1.6;
-  margin-bottom: 56px;
+  margin-bottom: 32px;
 }
 
 /* =====================================================================
    SLIDE PATTERN (full-height sections)
    ===================================================================== */
 .section-slide {
-  min-height: 100vh;
-  padding: 120px 6vw 100px;
+  min-height: auto;
+  padding: 60px 6vw 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -708,8 +709,9 @@ body::after {
 .hero-eyebrow::before {
   content: '';
   width: 30px;
-  height: 1px;
+  height: 2px;
   background: var(--tech-cyan);
+  border-radius: 99px;
 }
 .hero-title {
   font-family: var(--font-display);
@@ -966,7 +968,7 @@ body::after {
 /* Visual proof image inside each service card */
 .service-image {
   position: relative;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 3 / 2;
   margin: -36px -36px 24px;
   background: linear-gradient(135deg, var(--dark-panel), var(--dark-deeper));
   overflow: hidden;
@@ -991,9 +993,9 @@ body::after {
   text-align: center;
 }
 .service-image-placeholder svg {
-  width: 40px; height: 40px;
+  width: 56px; height: 56px;
   color: var(--tech-cyan);
-  opacity: 0.55;
+  opacity: 0.65;
 }
 .service-image-placeholder span {
   font-family: var(--font-mono);
@@ -1001,7 +1003,7 @@ body::after {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--silver-muted);
-  max-width: 240px;
+  max-width: 280px;
   line-height: 1.5;
 }
 @media (max-width: 900px) {
@@ -1035,8 +1037,9 @@ body::after {
 .service-card .service-icon svg { width: 28px; height: 28px; }
 
 .service-divider {
-  width: 40px; height: 1px;
+  width: 40px; height: 2px;
   background: var(--tech-cyan);
+  border-radius: 99px;
   margin-bottom: 18px;
   transition: width 0.5s var(--ease-out-expo);
 }
@@ -1045,7 +1048,7 @@ body::after {
 .service-card h3 {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 28px;
+  font-size: 22px;
   line-height: 1.15;
   letter-spacing: -0.02em;
   color: var(--pure-light);
@@ -1066,10 +1069,10 @@ body::after {
   margin-bottom: 18px;
 }
 .service-card p {
-  font-size: 14.5px;
-  line-height: 1.65;
+  font-size: 13px;
+  line-height: 1.6;
   color: var(--silver-node);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 .service-metrics {
   display: grid;
@@ -1149,8 +1152,9 @@ body::after {
   display: block;
 }
 .principle-divider {
-  width: 40px; height: 1px;
+  width: 40px; height: 2px;
   background: var(--tech-cyan);
+  border-radius: 99px;
   margin-bottom: 22px;
 }
 .principle-card h3 {
@@ -1176,8 +1180,9 @@ body::after {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0;
-  border-top: 1px solid rgba(40, 168, 223, 0.45);
+  border-top: 2px solid rgba(40, 168, 223, 0.45);
   margin-top: 16px;
+  border-radius: 0 0 4px 4px;
 }
 @media (max-width: 900px) { .metrics-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 480px) { .metrics-grid { grid-template-columns: 1fr; } }
@@ -1201,9 +1206,10 @@ body::after {
 .metric-cell:hover { background: rgba(40, 168, 223, 0.025); }
 .metric-cell::before {
   content: '';
-  position: absolute; top: -1px; left: 0;
-  width: 60px; height: 1px;
+  position: absolute; top: -2px; left: 0;
+  width: 60px; height: 3px;
   background: var(--tech-cyan);
+  border-radius: 99px;
 }
 .metric-eyebrow {
   font-family: var(--font-mono);
@@ -1939,7 +1945,7 @@ body::after {
    RESPONSIVE TWEAKS
    ===================================================================== */
 @media (max-width: 768px) {
-  .section-slide { padding: 100px 5vw 80px; }
+  .section-slide { padding: 50px 5vw 40px; }
   .hero { padding: 120px 5vw 60px; }
   .nav { padding: 14px 5vw; }
   .site-footer { padding: 80px 5vw 40px; }
@@ -2078,13 +2084,10 @@ body::after {
 <!-- Section dots -->
 <nav class="section-dots" aria-label="Sections" id="sectionDots">
   <a href="#hero" class="section-dot" data-label="Inicio" aria-label="Inicio"></a>
-  <a href="#problem" class="section-dot" data-label="Problema" aria-label="Problema"></a>
   <a href="#servicios" class="section-dot" data-label="Servicios" aria-label="Servicios"></a>
   <a href="#filosofia" class="section-dot" data-label="Filosofía" aria-label="Filosofía"></a>
   <a href="#metricas" class="section-dot" data-label="Impacto" aria-label="Impacto"></a>
-  <a href="#casos" class="section-dot" data-label="Casos" aria-label="Casos"></a>
   <a href="#proceso" class="section-dot" data-label="Proceso" aria-label="Proceso"></a>
-  <a href="#faq" class="section-dot" data-label="FAQ" aria-label="FAQ"></a>
   <a href="#contacto" class="section-dot" data-label="Contacto" aria-label="Contacto"></a>
 </nav>
 
@@ -2101,9 +2104,8 @@ body::after {
   <ul class="nav-links" id="navLinks">
     <li><a href="#servicios" class="nav-link">Servicios</a></li>
     <li><a href="#proceso" class="nav-link">Proceso</a></li>
-    <li><a href="#casos" class="nav-link">Casos</a></li>
     <li><a href="#filosofia" class="nav-link">Filosofía</a></li>
-    <li><a href="#faq" class="nav-link">FAQ</a></li>
+    <li><a href="#metricas" class="nav-link">Resultados</a></li>
     <li><a href="#contacto" class="nav-link">Contacto</a></li>
   </ul>
 
@@ -2228,22 +2230,6 @@ body::after {
   </section>
 
 
-  <!-- ====================== PROBLEM ====================== -->
-  <section class="problem section-slide" id="problem">
-    <div class="problem-wrap">
-      <div class="eyebrow reveal">El problema</div>
-      <h2 class="section-title reveal" data-stagger="2">
-        Estás trabajando <span class="serif-italic">en</span> tu negocio cuando deberías estar trabajando <span class="serif-italic">sobre</span> él.
-      </h2>
-      <p class="problem-desc reveal" data-stagger="3">
-        Mientras respondes el mismo WhatsApp por décima vez, tu competencia ya automatizó esa conversación, capturó al cliente y cerró la venta. Cada proceso manual es dinero saliendo por la puerta — sin que te des cuenta.
-      </p>
-      <p class="problem-close reveal" data-stagger="4">
-        Tu tiempo no es un recurso renovable. Tratémoslo así.
-      </p>
-    </div>
-  </section>
-
 
   <!-- ====================== SERVICES ====================== -->
   <section class="services section-slide" id="servicios">
@@ -2295,7 +2281,7 @@ body::after {
           </div>
         </article>
 
-        <article class="service-card reveal" data-stagger="2">
+        <a href="Time keepers- landing marketing.html" class="service-card reveal" data-stagger="2" style="display:block; text-decoration:none; color:inherit; cursor:pointer;">
           <!-- TODO: replace placeholder with real image. Asset: assets/services/marketing.webp (1280x720, WebP).
                Sugerencia: dashboard Meta Ads o GA4 con curva de conversion al alza. -->
           <div class="service-image" aria-hidden="true">
@@ -2328,7 +2314,7 @@ body::after {
             <span class="service-chip">Gemini</span>
             <span class="service-chip">GA4</span>
           </div>
-        </article>
+        </a>
 
         <article class="service-card reveal" data-stagger="3">
           <!-- TODO: replace placeholder with real image. Asset: assets/services/web.webp (1280x720, WebP).
@@ -2448,166 +2434,36 @@ body::after {
 
     <div class="metrics-grid">
       <div class="metric-cell reveal">
-        <span class="metric-eyebrow">Crecimiento exponencial</span>
+        <span class="metric-eyebrow">Trayectoria</span>
         <div class="metric-value">
-          <span class="unit">+</span><span class="counter" data-target="3.2" data-decimals="1">3.2</span><span class="unit">K</span>
+          <span class="counter" data-target="3" data-decimals="0">3</span>
         </div>
-        <p class="metric-desc">Impresiones orgánicas mensuales sostenidas en redes y SEO.</p>
+        <p class="metric-desc">Años de experiencia diseñando e implementando soluciones tecnológicas y de marketing.</p>
       </div>
       <div class="metric-cell reveal" data-stagger="2">
-        <span class="metric-eyebrow">Expansión de audiencia</span>
+        <span class="metric-eyebrow">Alianzas activas</span>
         <div class="metric-value">
-          <span class="unit">+</span><span class="counter" data-target="1.8" data-decimals="1">1.8</span><span class="unit">K</span>
+          <span class="counter" data-target="8" data-decimals="0">8</span>
         </div>
-        <p class="metric-desc">Tomadores de decisiones B2B impactados con nuestros activos.</p>
+        <p class="metric-desc">Cuentas corporativas escalando actualmente sus operaciones con nuestras estrategias.</p>
       </div>
       <div class="metric-cell reveal" data-stagger="3">
-        <span class="metric-eyebrow">Eficiencia en visibilidad</span>
+        <span class="metric-eyebrow">Impacto real</span>
         <div class="metric-value">
-          <span class="counter" data-target="4.7" data-decimals="1">4.7</span><span class="unit">%</span>
+          <span class="unit">+</span><span class="counter" data-target="25" data-decimals="0">25</span>
         </div>
-        <p class="metric-desc">CTR sostenido de impresión a visita de perfil.</p>
+        <p class="metric-desc">Clientes satisfechos que han transformado sus negocios con nosotros.</p>
       </div>
       <div class="metric-cell reveal" data-stagger="4">
-        <span class="metric-eyebrow">Índice de autoridad</span>
+        <span class="metric-eyebrow">Eficiencia operativa</span>
         <div class="metric-value">
-          <span class="counter" data-target="12" data-decimals="0">12</span>
+          <span class="unit">+</span><span class="counter" data-target="100" data-decimals="0">100</span>
         </div>
-        <p class="metric-desc">Activos de liderazgo estratégico desplegados.</p>
+        <p class="metric-desc">Flujos de trabajo y procesos automatizados para devolverle el tiempo a los equipos de trabajo.</p>
       </div>
     </div>
   </section>
 
-
-  <!-- ====================== CASOS DE EXITO ====================== -->
-  <section class="casos section-slide" id="casos">
-    <div class="services-wrap">
-      <header class="services-head">
-        <div class="eyebrow reveal">Casos de éxito · Sistemas en producción</div>
-        <h2 class="section-title reveal" data-stagger="2">
-          Lo que ya está <span class="serif-italic">funcionando</span>.
-        </h2>
-        <p class="section-sub reveal" data-stagger="3">
-          Tres operaciones reales que pasaron de manual a autónomo. Stack, problema y resultados verificables — sin números inflados.
-        </p>
-      </header>
-
-      <div class="casos-grid">
-
-        <!-- ---------- CASE 01 · DRAKEN LIMO ---------- -->
-        <article class="case-study reveal">
-          <div class="case-image">
-            <!-- TODO: replace placeholder with real screenshot at 1600x900 (WebP).
-                 Asset path: assets/cases/draken-limo.webp
-                 Sugerencia: captura del workflow n8n de WhatsApp Business + cotización automática. -->
-            <div class="case-image-placeholder">
-              <i data-lucide="message-square"></i>
-              <span>Workflow n8n + WhatsApp · Draken Limo</span>
-            </div>
-          </div>
-          <div class="case-body">
-            <div class="case-tag">Draken Limo · Miami / NYC · Transporte ejecutivo</div>
-
-            <div class="case-block">
-              <span class="case-label">Problema</span>
-              <p>Seguimiento manual de cotizaciones por WhatsApp, sin trazabilidad ni continuidad de marca.</p>
-            </div>
-
-            <div class="case-block">
-              <span class="case-label">Solución</span>
-              <p>Agente IA en WhatsApp Business que califica y cotiza 24/7. Parrilla de contenido automatizada con n8n y campañas Meta Ads conectadas al pipeline.</p>
-            </div>
-
-            <div class="case-kpis" role="list">
-              <div class="case-kpi" role="listitem"><span class="v">↓</span><span class="l">Tiempo de respuesta</span></div>
-              <div class="case-kpi" role="listitem"><span class="v">↑</span><span class="l">Leads cualificados</span></div>
-              <div class="case-kpi" role="listitem"><span class="v">✓</span><span class="l">Marca consistente</span></div>
-            </div>
-
-            <blockquote class="case-quote">
-              "TimeKeepers AI nos dio la tranquilidad operativa que necesitábamos y más clientes."
-              <cite><strong>Jaime Salanga</strong> · CEO, Draken Limo</cite>
-            </blockquote>
-          </div>
-        </article>
-
-        <!-- ---------- CASE 02 · DRAKEN SECURITY ---------- -->
-        <article class="case-study reveal" data-stagger="2">
-          <div class="case-image">
-            <!-- TODO: replace placeholder with real screenshot at 1600x900 (WebP).
-                 Asset path: assets/cases/draken-security.webp
-                 Sugerencia: captura del CRM con pipeline + agentes IA de seguimiento. -->
-            <div class="case-image-placeholder">
-              <i data-lucide="shield-check"></i>
-              <span>CRM + agentes IA · Draken Security</span>
-            </div>
-          </div>
-          <div class="case-body">
-            <div class="case-tag">Draken Security · Seguridad privada premium</div>
-
-            <div class="case-block">
-              <span class="case-label">Problema</span>
-              <p>Pipeline comercial sin trazabilidad: oportunidades perdidas en el seguimiento.</p>
-            </div>
-
-            <div class="case-block">
-              <span class="case-label">Solución</span>
-              <p>CRM centralizado, agentes IA de seguimiento por etapa y automatización de cotizaciones B2B. Cada lead deja huella, cada deal tiene dueño y SLA.</p>
-            </div>
-
-            <div class="case-kpis" role="list">
-              <div class="case-kpi" role="listitem"><span class="v">✓</span><span class="l">Pipeline visible</span></div>
-              <div class="case-kpi" role="listitem"><span class="v">↓</span><span class="l">Tareas manuales</span></div>
-              <div class="case-kpi" role="listitem"><span class="v">↑</span><span class="l">Cierres comerciales</span></div>
-            </div>
-
-            <blockquote class="case-quote">
-              "Automatizamos seguimiento, cotizaciones y marketing con agentes de IA. Pipeline más sólido."
-              <cite><strong>Jaime Salanga</strong> · CEO, Draken Security</cite>
-            </blockquote>
-          </div>
-        </article>
-
-        <!-- ---------- CASE 03 · URBEXAD ---------- -->
-        <article class="case-study reveal" data-stagger="3">
-          <div class="case-image">
-            <!-- TODO: replace placeholder with real screenshot at 1600x900 (WebP).
-                 Asset path: assets/cases/urbexad.webp
-                 Sugerencia: web del cliente + dashboard CRM + parrilla de contenido. -->
-            <div class="case-image-placeholder">
-              <i data-lucide="layout-template"></i>
-              <span>Web + CRM + IA · UrbexAD</span>
-            </div>
-          </div>
-          <div class="case-body">
-            <div class="case-tag">UrbexAD · Bogotá · Arquitectura &amp; diseño</div>
-
-            <div class="case-block">
-              <span class="case-label">Problema</span>
-              <p>Leads desordenados, respuestas lentas y proyectos perdidos por falta de proceso.</p>
-            </div>
-
-            <div class="case-block">
-              <span class="case-label">Solución</span>
-              <p>Ecosistema integrado: sitio web de conversión, CRM con scoring, agente IA de calificación y parrilla de contenido automatizada en redes.</p>
-            </div>
-
-            <div class="case-kpis" role="list">
-              <div class="case-kpi" role="listitem"><span class="v">✓</span><span class="l">Leads ordenados</span></div>
-              <div class="case-kpi" role="listitem"><span class="v">↓</span><span class="l">Tiempo de respuesta</span></div>
-              <div class="case-kpi" role="listitem"><span class="v">↑</span><span class="l">Proyectos cerrados</span></div>
-            </div>
-
-            <blockquote class="case-quote">
-              "Integraron web, CRM y agente de IA: leads ordenados, respuestas rápidas."
-              <cite><strong>Cristian Gómez</strong> · CEO, UrbexAD</cite>
-            </blockquote>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
 
 
   <!-- ====================== PROCESS ====================== -->
@@ -2654,80 +2510,6 @@ body::after {
     </div>
   </section>
 
-
-  <!-- ====================== FAQ ====================== -->
-  <section class="faq section-slide" id="faq">
-    <div class="faq-wrap">
-      <header style="text-align:center; display:flex; flex-direction:column; align-items:center;">
-        <div class="eyebrow reveal">Preguntas frecuentes</div>
-        <h2 class="section-title reveal" data-stagger="2" style="text-align:center;">
-          Lo que probablemente <span class="serif-italic">te estás</span> preguntando.
-        </h2>
-      </header>
-
-      <div class="faq-list">
-        <div class="faq-item reveal">
-          <button class="faq-question" aria-expanded="false">
-            <span>¿Cuánto cuesta trabajar con TimeKeepers AI?</span>
-            <span class="faq-icon"><i data-lucide="chevron-down"></i></span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              Depende del sistema que necesites. Tras la auditoría gratuita te damos una propuesta clara con precio cerrado — sin sorpresas, sin letra chica.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item reveal" data-stagger="2">
-          <button class="faq-question" aria-expanded="false">
-            <span>¿En cuánto tiempo veo resultados?</span>
-            <span class="faq-icon"><i data-lucide="chevron-down"></i></span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              La mayoría de nuestros clientes ve los primeros resultados entre la semana 4 y 8. Te entregamos KPIs medibles desde el inicio.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item reveal" data-stagger="3">
-          <button class="faq-question" aria-expanded="false">
-            <span>¿Qué pasa si no soy bueno con la tecnología?</span>
-            <span class="faq-icon"><i data-lucide="chevron-down"></i></span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              Esa es exactamente la idea. Tú no tienes que aprender nada — nosotros operamos los sistemas y tú ves los resultados.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item reveal" data-stagger="4">
-          <button class="faq-question" aria-expanded="false">
-            <span>¿Trabajan con empresas pequeñas o solo grandes?</span>
-            <span class="faq-icon"><i data-lucide="chevron-down"></i></span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              Trabajamos con empresas que tengan claro hacia dónde quieren crecer. Si tienes una operación funcionando y quieres escalar, encajamos.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item reveal" data-stagger="5">
-          <button class="faq-question" aria-expanded="false">
-            <span>¿Y si ya tengo una agencia de marketing?</span>
-            <span class="faq-icon"><i data-lucide="chevron-down"></i></span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              No competimos con tu agencia — la potenciamos. Nuestros sistemas de IA y automatización se integran con lo que ya tienes funcionando.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
 
   <!-- ====================== CONTACT ====================== -->
@@ -2863,7 +2645,6 @@ body::after {
       <ul>
         <li><a href="#filosofia">Filosofía</a></li>
         <li><a href="#proceso">Proceso</a></li>
-        <li><a href="#casos">Casos</a></li>
         <li><a href="#metricas">Impacto</a></li>
       </ul>
     </div>
@@ -2871,7 +2652,6 @@ body::after {
     <div class="footer-col">
       <h5>Recursos</h5>
       <ul>
-        <li><a href="#faq">FAQ</a></li>
         <li><a href="#contacto">Contacto</a></li>
         <li><a href="mailto:timekeepers121@gmail.com">timekeepers121@gmail.com</a></li>
       </ul>
