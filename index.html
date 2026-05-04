@@ -2003,11 +2003,7 @@ body::after {
   .scroll-progress { display: none; }
 }
 
-/* Scroll snap (desktop only, optional) */
-@media (min-width: 1024px) and (hover: hover) {
-  html { scroll-snap-type: y proximity; }
-  .section-slide, .hero, .stack-marquee { scroll-snap-align: start; }
-}
+/* Scroll snap desactivado — smooth scroll JS handles inertia */
 
 /* =====================================================================
    REDUCED MOTION
@@ -2313,15 +2309,6 @@ body::after {
             <div class="service-metric"><span class="v">24/7</span><span class="l">operación autónoma</span></div>
             <div class="service-metric"><span class="v">~0</span><span class="l">errores humanos</span></div>
           </div>
-          <div class="service-stack">
-            <span class="service-chip">n8n</span>
-            <span class="service-chip">Make</span>
-            <span class="service-chip">Zapier</span>
-            <span class="service-chip">UiPath</span>
-            <span class="service-chip">Python</span>
-            <span class="service-chip">LangChain</span>
-            <span class="service-chip">RAG</span>
-          </div>
         </article>
 
         <a href="../estees/timekeepers-landing-marketing.html" class="service-card reveal" data-stagger="2" style="display:block; text-decoration:none; color:inherit; cursor:pointer;">
@@ -2347,15 +2334,6 @@ body::after {
             <div class="service-metric"><span class="v">30–50%</span><span class="l">↓ CAC</span></div>
             <div class="service-metric"><span class="v">2–4×</span><span class="l">conversion rate</span></div>
             <div class="service-metric"><span class="v">1×</span><span class="l">pipeline predecible</span></div>
-          </div>
-          <div class="service-stack">
-            <span class="service-chip">HubSpot</span>
-            <span class="service-chip">Google Ads</span>
-            <span class="service-chip">Meta Ads</span>
-            <span class="service-chip">LinkedIn</span>
-            <span class="service-chip">Perplexity</span>
-            <span class="service-chip">Gemini</span>
-            <span class="service-chip">GA4</span>
           </div>
         </a>
 
@@ -2383,14 +2361,6 @@ body::after {
             <div class="service-metric"><span class="v">3–5×</span><span class="l">conversion rates</span></div>
             <div class="service-metric"><span class="v">Top-3</span><span class="l">SEO 4–6 meses</span></div>
           </div>
-          <div class="service-stack">
-            <span class="service-chip">Next.js</span>
-            <span class="service-chip">React</span>
-            <span class="service-chip">Webflow</span>
-            <span class="service-chip">WP Headless</span>
-            <span class="service-chip">Vercel</span>
-            <span class="service-chip">Ahrefs</span>
-          </div>
         </article>
 
         <article class="service-card reveal" data-stagger="4">
@@ -2416,16 +2386,6 @@ body::after {
             <div class="service-metric"><span class="v">4–8 sem</span><span class="l">a producción</span></div>
             <div class="service-metric"><span class="v">40–70%</span><span class="l">ahorro operativo</span></div>
             <div class="service-metric"><span class="v">&gt;85%</span><span class="l">accuracy predictivo</span></div>
-          </div>
-          <div class="service-stack">
-            <span class="service-chip">GPT-4</span>
-            <span class="service-chip">Claude</span>
-            <span class="service-chip">Gemini</span>
-            <span class="service-chip">LangChain</span>
-            <span class="service-chip">LlamaIndex</span>
-            <span class="service-chip">Vector DBs</span>
-            <span class="service-chip">Python</span>
-            <span class="service-chip">Docker</span>
           </div>
         </article>
 
@@ -3116,6 +3076,53 @@ body::after {
     });
   }
 
+})();
+</script>
+
+<!-- Smooth scroll with inertia (desktop only, non-touch) -->
+<script>
+(function () {
+  if (window.matchMedia('(hover: none)').matches) return; // skip touch devices
+
+  var currentY = window.scrollY;
+  var targetY  = window.scrollY;
+  var rafId    = null;
+  var EASE     = 0.07;   // 0.04 = very slow, 0.12 = faster. Tweak here.
+  var DELTA_MULTIPLIER = 1.2; // wheel delta amplifier
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  function tick() {
+    currentY = lerp(currentY, targetY, EASE);
+    var diff = Math.abs(targetY - currentY);
+    if (diff < 0.5) {
+      currentY = targetY;
+      window.scrollTo(0, currentY);
+      rafId = null;
+      return;
+    }
+    window.scrollTo(0, currentY);
+    rafId = requestAnimationFrame(tick);
+  }
+
+  window.addEventListener('wheel', function (e) {
+    // Let horizontal carousels scroll normally
+    var el = e.target;
+    while (el && el !== document.body) {
+      var style = window.getComputedStyle(el);
+      if (style.overflowX === 'auto' || style.overflowX === 'scroll') return;
+      el = el.parentElement;
+    }
+
+    e.preventDefault();
+    var maxY = document.documentElement.scrollHeight - window.innerHeight;
+    targetY = Math.max(0, Math.min(maxY, targetY + e.deltaY * DELTA_MULTIPLIER));
+
+    if (!rafId) {
+      currentY = window.scrollY;
+      rafId = requestAnimationFrame(tick);
+    }
+  }, { passive: false });
 })();
 </script>
 
