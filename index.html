@@ -3079,49 +3079,53 @@ body::after {
 })();
 </script>
 
-<!-- Smooth scroll with inertia (desktop only, non-touch) -->
+<!-- Section-by-section scroll (desktop only) -->
 <script>
 (function () {
-  if (window.matchMedia('(hover: none)').matches) return; // skip touch devices
+  if (window.matchMedia('(hover: none)').matches) return; // skip touch
 
-  var currentY = window.scrollY;
-  var targetY  = window.scrollY;
-  var rafId    = null;
-  var EASE     = 0.07;   // 0.04 = very slow, 0.12 = faster. Tweak here.
-  var DELTA_MULTIPLIER = 1.2; // wheel delta amplifier
+  var COOLDOWN = 900; // ms between section jumps
+  var last = 0;
+  var locked = false;
 
-  function lerp(a, b, t) { return a + (b - a) * t; }
+  var SECTIONS = Array.from(
+    document.querySelectorAll('.hero, .stack-marquee, .section-slide')
+  );
 
-  function tick() {
-    currentY = lerp(currentY, targetY, EASE);
-    var diff = Math.abs(targetY - currentY);
-    if (diff < 0.5) {
-      currentY = targetY;
-      window.scrollTo(0, currentY);
-      rafId = null;
-      return;
+  function currentIndex() {
+    var mid = window.scrollY + window.innerHeight / 2;
+    var best = 0;
+    for (var i = 0; i < SECTIONS.length; i++) {
+      var top = SECTIONS[i].getBoundingClientRect().top + window.scrollY;
+      if (top <= mid) best = i;
     }
-    window.scrollTo(0, currentY);
-    rafId = requestAnimationFrame(tick);
+    return best;
+  }
+
+  function goTo(idx) {
+    idx = Math.max(0, Math.min(SECTIONS.length - 1, idx));
+    SECTIONS[idx].scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   window.addEventListener('wheel', function (e) {
-    // Let horizontal carousels scroll normally
+    // Allow horizontal carousels
     var el = e.target;
     while (el && el !== document.body) {
-      var style = window.getComputedStyle(el);
-      if (style.overflowX === 'auto' || style.overflowX === 'scroll') return;
+      var ov = window.getComputedStyle(el).overflowX;
+      if (ov === 'auto' || ov === 'scroll') return;
       el = el.parentElement;
     }
 
-    e.preventDefault();
-    var maxY = document.documentElement.scrollHeight - window.innerHeight;
-    targetY = Math.max(0, Math.min(maxY, targetY + e.deltaY * DELTA_MULTIPLIER));
+    var now = Date.now();
+    if (locked || now - last < COOLDOWN) { e.preventDefault(); return; }
 
-    if (!rafId) {
-      currentY = window.scrollY;
-      rafId = requestAnimationFrame(tick);
-    }
+    e.preventDefault();
+    last = now;
+    locked = true;
+    setTimeout(function () { locked = false; }, COOLDOWN);
+
+    var dir = e.deltaY > 0 ? 1 : -1;
+    goTo(currentIndex() + dir);
   }, { passive: false });
 })();
 </script>
