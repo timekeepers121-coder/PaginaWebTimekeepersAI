@@ -215,7 +215,7 @@
    ===================================================================== */
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; }
 body {
   font-family: var(--font-body);
   background: var(--dark-core);
@@ -426,33 +426,26 @@ body::after {
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 16px;
+  font-size: 20px;
   letter-spacing: 0.02em;
 }
 .nav-logo .logo-mark {
-  width: 40px; height: 40px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, var(--dark-panel), var(--dark-deeper));
-  border: 1px solid var(--tech-cyan);
+  width: 56px; height: 56px;
+  border-radius: 14px;
+  background: transparent;
+  border: none;
   display: grid; place-items: center;
-  font-family: var(--font-display);
-  font-weight: 800;
-  color: var(--tech-cyan);
-  font-size: 18px;
-  box-shadow: 0 0 16px var(--tech-cyan-soft), inset 0 1px 0 rgba(255, 255, 255, 0.06);
   position: relative;
   overflow: hidden;
-  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+  transition: opacity 0.3s ease;
 }
 .nav-logo .logo-mark img {
-  width: 34px; height: 34px;
+  width: 56px; height: 56px;
   object-fit: contain;
   display: block;
-  mix-blend-mode: screen;
-  filter: brightness(1.05) contrast(1.1);
 }
 .nav-logo .logo-mark::after {
   content: '';
@@ -622,6 +615,32 @@ body::after {
   border-bottom: 1px solid var(--border-subtle);
 }
 
+/* Hero background video */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.45;
+  pointer-events: none;
+}
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(to bottom,
+      rgba(11, 15, 25, 0.55) 0%,
+      rgba(11, 15, 25, 0.35) 50%,
+      rgba(11, 15, 25, 0.75) 100%),
+    radial-gradient(ellipse at 60% 50%, rgba(11, 15, 25, 0.2) 0%, rgba(11, 15, 25, 0.6) 100%);
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-video { display: none; }
+}
+
 /* Aurora cone (animated) */
 .hero-aurora {
   position: absolute;
@@ -662,7 +681,7 @@ body::after {
   transform: translateY(-50%);
   width: 760px; height: 760px;
   pointer-events: none;
-  z-index: 1;
+  z-index: 3;
   opacity: 0.55;
 }
 .cover-orbit .ring {
@@ -1096,10 +1115,13 @@ body::after {
   margin-bottom: 6px;
 }
 .service-card h3 .serif-italic {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
-  color: var(--tech-cyan);
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 700;
+  color: inherit;
+}
+.service-card h3 {
+  text-transform: uppercase;
 }
 .service-category {
   font-family: var(--font-mono);
@@ -2131,7 +2153,7 @@ body::after {
 <!-- ====================== NAVBAR ====================== -->
 <header class="nav" id="nav">
   <a href="#hero" class="nav-logo" aria-label="TimeKeepers AI · Inicio">
-    <span class="logo-mark"><img src="assets/logo-mark.jpg" alt="" width="34" height="34" loading="eager" decoding="async" /></span>
+    <span class="logo-mark"><img src="../estees/Logo.png" alt="TimeKeepers AI" width="56" height="56" loading="eager" decoding="async" /></span>
     <span class="brand-text">
       <span class="brand">TimeKeepers AI</span>
       <span class="brand-tag">More time for you</span>
@@ -2161,6 +2183,13 @@ body::after {
 
   <!-- ====================== HERO ====================== -->
   <section class="hero" id="hero">
+
+    <!-- Background video -->
+    <video class="hero-video" autoplay loop muted playsinline preload="auto" aria-hidden="true">
+      <source src="../estees/Video AI.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-video-overlay" aria-hidden="true"></div>
+
     <div class="hero-aurora" aria-hidden="true"></div>
     <div class="hero-spotlight" aria-hidden="true"></div>
 
@@ -2299,16 +2328,11 @@ body::after {
             <span class="service-icon"><i data-lucide="workflow"></i></span>
           </div>
           <div class="service-divider"></div>
-          <h3>Automatización empresarial <span class="serif-italic">cognitiva</span></h3>
+          <h3>Automatización empresarial cognitiva</h3>
           <div class="service-category">Workflow Orchestration</div>
           <p>
             Construimos sistemas de automatización inteligente end-to-end que eliminan cuellos de botella operativos y multiplican capacidad sin aumentar nómina.
           </p>
-          <div class="service-metrics">
-            <div class="service-metric"><span class="v">60–80%</span><span class="l">↓ tareas manuales</span></div>
-            <div class="service-metric"><span class="v">24/7</span><span class="l">operación autónoma</span></div>
-            <div class="service-metric"><span class="v">~0</span><span class="l">errores humanos</span></div>
-          </div>
         </article>
 
         <a href="../estees/timekeepers-landing-marketing.html" class="service-card reveal" data-stagger="2" style="display:block; text-decoration:none; color:inherit; cursor:pointer;">
@@ -2325,16 +2349,11 @@ body::after {
             <span class="service-icon"><i data-lucide="trending-up"></i></span>
           </div>
           <div class="service-divider"></div>
-          <h3>Marketing impulsado por <span class="serif-italic">IA</span></h3>
+          <h3>Marketing impulsado por IA</h3>
           <div class="service-category">Growth Marketing</div>
           <p>
             Construimos sistemas de demand generation científico donde cada dólar retorna con impacto medible y escalable.
           </p>
-          <div class="service-metrics">
-            <div class="service-metric"><span class="v">30–50%</span><span class="l">↓ CAC</span></div>
-            <div class="service-metric"><span class="v">2–4×</span><span class="l">conversion rate</span></div>
-            <div class="service-metric"><span class="v">1×</span><span class="l">pipeline predecible</span></div>
-          </div>
         </a>
 
         <article class="service-card reveal" data-stagger="3">
@@ -2351,16 +2370,11 @@ body::after {
             <span class="service-icon"><i data-lucide="layout-dashboard"></i></span>
           </div>
           <div class="service-divider"></div>
-          <h3>Activos web de alto <span class="serif-italic">rendimiento</span></h3>
+          <h3>Activos web de alto rendimiento</h3>
           <div class="service-category">High-Conversion Web</div>
           <p>
             Construimos Digital Real Estate optimizado para conversión máxima, velocidad extrema y arquitectura SEO técnica.
           </p>
-          <div class="service-metrics">
-            <div class="service-metric"><span class="v">&lt;2s</span><span class="l">tiempo de carga</span></div>
-            <div class="service-metric"><span class="v">3–5×</span><span class="l">conversion rates</span></div>
-            <div class="service-metric"><span class="v">Top-3</span><span class="l">SEO 4–6 meses</span></div>
-          </div>
         </article>
 
         <article class="service-card reveal" data-stagger="4">
@@ -2377,16 +2391,11 @@ body::after {
             <span class="service-icon"><i data-lucide="target"></i></span>
           </div>
           <div class="service-divider"></div>
-          <h3>Asesoría para integración de <span class="serif-italic">IA</span></h3>
+          <h3>Integración de IA empresarial</h3>
           <div class="service-category">AI Strategy &amp; Implementation</div>
           <p>
             Auditamos operaciones, identificamos cuellos de botella y diseñamos AI Roadmaps medibles por ROI.
           </p>
-          <div class="service-metrics">
-            <div class="service-metric"><span class="v">4–8 sem</span><span class="l">a producción</span></div>
-            <div class="service-metric"><span class="v">40–70%</span><span class="l">ahorro operativo</span></div>
-            <div class="service-metric"><span class="v">&gt;85%</span><span class="l">accuracy predictivo</span></div>
-          </div>
         </article>
 
       </div>
@@ -2623,7 +2632,7 @@ body::after {
   <div class="footer-grid">
     <div class="footer-brand-block">
       <a href="#hero" class="nav-logo">
-        <span class="logo-mark"><img src="assets/logo-mark.jpg" alt="" width="34" height="34" loading="eager" decoding="async" /></span>
+        <span class="logo-mark"><img src="../estees/Logo.png" alt="TimeKeepers AI" width="56" height="56" loading="eager" decoding="async" /></span>
         <span class="brand-text">
           <span class="brand">TimeKeepers AI</span>
           <span class="brand-tag">More time for you</span>
@@ -3079,56 +3088,6 @@ body::after {
 })();
 </script>
 
-<!-- Section-by-section scroll (desktop only) -->
-<script>
-(function () {
-  if (window.matchMedia('(hover: none)').matches) return; // skip touch
-
-  var COOLDOWN = 900; // ms between section jumps
-  var last = 0;
-  var locked = false;
-
-  var SECTIONS = Array.from(
-    document.querySelectorAll('.hero, .stack-marquee, .section-slide')
-  );
-
-  function currentIndex() {
-    var mid = window.scrollY + window.innerHeight / 2;
-    var best = 0;
-    for (var i = 0; i < SECTIONS.length; i++) {
-      var top = SECTIONS[i].getBoundingClientRect().top + window.scrollY;
-      if (top <= mid) best = i;
-    }
-    return best;
-  }
-
-  function goTo(idx) {
-    idx = Math.max(0, Math.min(SECTIONS.length - 1, idx));
-    SECTIONS[idx].scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  window.addEventListener('wheel', function (e) {
-    // Allow horizontal carousels
-    var el = e.target;
-    while (el && el !== document.body) {
-      var ov = window.getComputedStyle(el).overflowX;
-      if (ov === 'auto' || ov === 'scroll') return;
-      el = el.parentElement;
-    }
-
-    var now = Date.now();
-    if (locked || now - last < COOLDOWN) { e.preventDefault(); return; }
-
-    e.preventDefault();
-    last = now;
-    locked = true;
-    setTimeout(function () { locked = false; }, COOLDOWN);
-
-    var dir = e.deltaY > 0 ? 1 : -1;
-    goTo(currentIndex() + dir);
-  }, { passive: false });
-})();
-</script>
 
 </body>
 </html>
