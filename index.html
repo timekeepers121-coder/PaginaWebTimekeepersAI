@@ -616,68 +616,45 @@ body::after {
   border-bottom: 1px solid var(--border-subtle);
 }
 
-/* Hero video — right side, fully visible with soft diffused edges */
+/* Hero video — right half, full video visible, only left edge diffused */
 .hero-video {
   position: absolute;
-  top: 0; right: 0;
-  width: 55%; height: 100%;
-  object-fit: cover;
-  object-position: center center;
+  top: 50%; right: 0;
+  transform: translateY(-50%);
+  width: 52%;
+  height: auto;
+  object-fit: contain;
   z-index: 2;
-  opacity: 0.80;
+  opacity: 0.90;
   pointer-events: none;
-  border-radius: 0;
-  /* Diffused edges: fade all 4 borders softly */
+  /* Only fade the left edge to blend with background */
   -webkit-mask-image: linear-gradient(
     to right,
     transparent 0%,
-    black 18%,
-    black 88%,
-    transparent 100%
-  ),
-  linear-gradient(
-    to bottom,
-    transparent 0%,
-    black 10%,
-    black 88%,
-    transparent 100%
+    black 14%,
+    black 100%
   );
-  -webkit-mask-composite: destination-in;
   mask-image: linear-gradient(
     to right,
     transparent 0%,
-    black 18%,
-    black 88%,
-    transparent 100%
-  ),
-  linear-gradient(
-    to bottom,
-    transparent 0%,
-    black 10%,
-    black 88%,
-    transparent 100%
+    black 14%,
+    black 100%
   );
-  mask-composite: intersect;
 }
 .hero-video-overlay {
   position: absolute;
   inset: 0;
   z-index: 1;
-  /* Subtle left-side darkening to keep text readable */
-  background: linear-gradient(
-    to right,
-    rgba(11, 15, 25, 0.15) 0%,
-    rgba(11, 15, 25, 0.0) 45%,
-    rgba(11, 15, 25, 0.0) 100%
-  );
   pointer-events: none;
 }
 @media (max-width: 900px) {
   .hero-video {
+    top: auto; bottom: 0;
+    transform: none;
     width: 100%;
-    opacity: 0.30;
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
-    mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+    opacity: 0.25;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 100%);
   }
 }
 @media (prefers-reduced-motion: reduce) {
