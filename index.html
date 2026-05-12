@@ -1143,15 +1143,18 @@ body::after {
 .svc-media-grid.mkt-row::-webkit-scrollbar { display: none; }
 .svc-media-grid.mkt-row .svc-video-slot {
   flex: 0 0 auto;
-  width: 120px;
+  width: 220px;
   aspect-ratio: 9 / 16;
   height: unset;
   border-radius: 10px;
   background: #000;
   scroll-snap-align: start;
 }
-@media (max-width: 700px) {
-  .svc-media-grid.mkt-row .svc-video-slot { width: 85px; }
+@media (max-width: 900px) {
+  .svc-media-grid.mkt-row .svc-video-slot { width: 160px; }
+}
+@media (max-width: 600px) {
+  .svc-media-grid.mkt-row .svc-video-slot { width: 130px; }
 }
 
 /* Títulos de sección media dentro de service-card */
@@ -1196,6 +1199,7 @@ body::after {
 .svc-carousel-slide {
   flex: 0 0 100%;
   aspect-ratio: 16 / 9;
+  min-height: 300px;
   overflow: hidden;
   border-radius: 14px;
   background: rgba(255,255,255,0.04);
