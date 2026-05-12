@@ -1111,7 +1111,8 @@ body::after {
 .svc-video-slot video {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  background: #000;
   border-radius: 12px;
 }
 .svc-video-slot .slot-label {
@@ -1126,6 +1127,124 @@ body::after {
   pointer-events: none;
 }
 .svc-video-slot i { color: var(--tech-cyan); opacity: 0.5; }
+
+/* Videos marketing: fila horizontal compacta */
+.svc-media-grid.mkt-row {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-top: 8px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.svc-media-grid.mkt-row::-webkit-scrollbar { display: none; }
+.svc-media-grid.mkt-row .svc-video-slot {
+  flex: 0 0 auto;
+  width: 120px;
+  aspect-ratio: 9 / 16;
+  height: unset;
+  border-radius: 10px;
+  background: #000;
+  scroll-snap-align: start;
+}
+@media (max-width: 700px) {
+  .svc-media-grid.mkt-row .svc-video-slot { width: 85px; }
+}
+
+/* Títulos de sección media dentro de service-card */
+.svc-media-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--tech-cyan);
+  opacity: 0.85;
+  margin-top: 24px;
+  margin-bottom: 0;
+}
+
+/* Etiqueta sobre el carrusel */
+.svc-carousel-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--tech-cyan);
+  opacity: 0.85;
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+
+/* Carrusel de imágenes marketing */
+.svc-carousel {
+  position: relative;
+  margin-top: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.svc-carousel-track {
+  display: flex;
+  transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
+  will-change: transform;
+}
+.svc-carousel-slide {
+  flex: 0 0 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(74,143,212,0.25);
+}
+.svc-carousel-slide img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  background: #000;
+  display: block;
+  pointer-events: none;
+}
+.svc-carousel-btn {
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  background: rgba(10,14,30,0.75);
+  border: 1px solid rgba(74,143,212,0.4);
+  color: var(--tech-cyan);
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 2;
+  transition: background 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.svc-carousel-btn:hover { background: rgba(74,143,212,0.25); }
+.svc-carousel-btn.prev { left: 10px; }
+.svc-carousel-btn.next { right: 10px; }
+@media (max-width: 600px) {
+  .svc-carousel-btn { width: 30px; height: 30px; }
+  .svc-carousel-btn.prev { left: 6px; }
+  .svc-carousel-btn.next { right: 6px; }
+}
+.svc-carousel-dots {
+  display: flex; justify-content: center; gap: 6px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+.svc-carousel-dots span {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: rgba(74,143,212,0.3);
+  cursor: pointer;
+  transition: background 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.svc-carousel-dots span.active { background: var(--tech-cyan); }
 
 /* Placeholder de imagen */
 .svc-img-slot {
@@ -2624,18 +2743,50 @@ body::after {
           <p>
             Construimos sistemas de demand generation científico donde cada dólar retorna con impacto medible y escalable.
           </p>
-          <div class="svc-media-grid cols-3">
+          <p class="svc-media-title">Eventos cubiertos por TimeKeepersAI</p>
+          <div class="svc-media-grid mkt-row">
             <div class="svc-video-slot">
-              <video src="assets/videos/marketing/video1.mp4" controls muted playsinline preload="metadata"></video>
+              <video src="assets/videos/marketing/video1.mp4" autoplay muted loop playsinline preload="auto"></video>
             </div>
             <div class="svc-video-slot">
-              <video src="assets/videos/marketing/video2.mp4" controls muted playsinline preload="metadata"></video>
+              <video src="assets/videos/marketing/video2.mp4" autoplay muted loop playsinline preload="auto"></video>
             </div>
             <div class="svc-video-slot">
-              <video src="assets/videos/marketing/video3.mp4" controls muted playsinline preload="metadata"></video>
+              <video src="assets/videos/marketing/video3.mp4" autoplay muted loop playsinline preload="auto"></video>
             </div>
             <div class="svc-video-slot">
-              <video src="assets/videos/marketing/video4.mp4" controls muted playsinline preload="metadata"></video>
+              <video src="assets/videos/marketing/video4.mp4" autoplay muted loop playsinline preload="auto"></video>
+            </div>
+          </div>
+
+          <!-- Carrusel de imágenes -->
+          <p class="svc-carousel-label">Carruseles creados por TimeKeepersAI</p>
+          <div class="svc-carousel" id="mkt-carousel">
+            <div class="svc-carousel-track" id="mkt-track">
+              <div class="svc-carousel-slide"><img src="assets/images/marketing/carrusel/imagen1.png" alt="Carrusel 1" loading="lazy" /></div>
+              <div class="svc-carousel-slide"><img src="assets/images/marketing/carrusel/imagen2.png" alt="Carrusel 2" loading="lazy" /></div>
+              <div class="svc-carousel-slide"><img src="assets/images/marketing/carrusel/imagen3.png" alt="Carrusel 3" loading="lazy" /></div>
+              <div class="svc-carousel-slide"><img src="assets/images/marketing/carrusel/imagen4.png" alt="Carrusel 4" loading="lazy" /></div>
+              <div class="svc-carousel-slide"><img src="assets/images/marketing/carrusel/imagen5.png" alt="Carrusel 5" loading="lazy" /></div>
+              <div class="svc-carousel-slide"><img src="assets/images/marketing/carrusel/imagen6.png" alt="Carrusel 6" loading="lazy" /></div>
+              <div class="svc-carousel-slide"><img src="assets/images/marketing/carrusel/imagen7.png" alt="Carrusel 7" loading="lazy" /></div>
+              <div class="svc-carousel-slide"><img src="assets/images/marketing/carrusel/imagen8.png" alt="Carrusel 8" loading="lazy" /></div>
+            </div>
+            <button class="svc-carousel-btn prev" onclick="mktCarousel(-1)" aria-label="Anterior">
+              <i data-lucide="chevron-left"></i>
+            </button>
+            <button class="svc-carousel-btn next" onclick="mktCarousel(1)" aria-label="Siguiente">
+              <i data-lucide="chevron-right"></i>
+            </button>
+            <div class="svc-carousel-dots" id="mkt-dots">
+              <span class="active" onclick="mktGoTo(0)"></span>
+              <span onclick="mktGoTo(1)"></span>
+              <span onclick="mktGoTo(2)"></span>
+              <span onclick="mktGoTo(3)"></span>
+              <span onclick="mktGoTo(4)"></span>
+              <span onclick="mktGoTo(5)"></span>
+              <span onclick="mktGoTo(6)"></span>
+              <span onclick="mktGoTo(7)"></span>
             </div>
           </div>
         </article>
@@ -3389,6 +3540,41 @@ body::after {
 })();
 </script>
 
+<script>
+(function() {
+  var mktIndex = 0;
+  var slides = document.querySelectorAll('#mkt-track .svc-carousel-slide');
+  var dots = document.querySelectorAll('#mkt-dots span');
+  var timer = setInterval(function() { step(1); }, 4000);
+  var touchStartX = 0;
+
+  function step(dir) {
+    mktIndex = (mktIndex + dir + slides.length) % slides.length;
+    mktUpdate();
+  }
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(function() { step(1); }, 4000);
+  }
+
+  window.mktCarousel = function(dir) { resetTimer(); step(dir); };
+  window.mktGoTo = function(i) { resetTimer(); mktIndex = i; mktUpdate(); };
+
+  function mktUpdate() {
+    document.getElementById('mkt-track').style.transform = 'translateX(-' + (mktIndex * 100) + '%)';
+    dots.forEach(function(d, i) { d.classList.toggle('active', i === mktIndex); });
+  }
+
+  var carousel = document.getElementById('mkt-carousel');
+  carousel.addEventListener('touchstart', function(e) {
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+  carousel.addEventListener('touchend', function(e) {
+    var diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) { resetTimer(); step(diff > 0 ? 1 : -1); }
+  }, { passive: true });
+})();
+</script>
 
 </body>
 </html>
