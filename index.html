@@ -1157,28 +1157,101 @@ body::after {
   .svc-media-grid.mkt-row .svc-video-slot { width: 130px; }
 }
 
-/* Títulos de sección media dentro de service-card */
-.svc-media-title {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.16em;
+/* Títulos de bloque dentro de service-card */
+.svc-block-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--tech-cyan);
-  opacity: 0.85;
-  margin-top: 24px;
-  margin-bottom: 0;
+  margin-top: 28px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.svc-block-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(74,143,212,0.4), transparent);
+}
+
+/* Grid de eventos con label debajo */
+.svc-eventos-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.svc-eventos-grid::-webkit-scrollbar { display: none; }
+
+.svc-evento-item {
+  flex: 0 0 auto;
+  width: 200px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.svc-evento-item .svc-video-slot {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  height: unset;
+  background: #000;
+  border-radius: 10px;
+}
+.svc-evento-label {
+  text-align: center;
+  padding: 0 2px;
+}
+.svc-evento-label strong {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 1.4;
+}
+.svc-evento-label span {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--tech-cyan);
+  opacity: 0.8;
+  margin-top: 2px;
+}
+@media (max-width: 900px) {
+  .svc-evento-item { width: 155px; }
+}
+@media (max-width: 600px) {
+  .svc-evento-item { width: 125px; }
 }
 
 /* Etiqueta sobre el carrusel */
 .svc-carousel-label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.16em;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--tech-cyan);
-  opacity: 0.85;
-  margin-top: 24px;
-  margin-bottom: 8px;
+  margin-top: 28px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.svc-carousel-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(74,143,212,0.4), transparent);
 }
 
 /* Carrusel de imágenes marketing */
@@ -2742,24 +2815,72 @@ body::after {
             <span class="service-icon"><i data-lucide="trending-up"></i></span>
           </div>
           <div class="service-divider"></div>
-          <h3>Marketing impulsado por IA</h3>
+          <h3>Marketing Profesional</h3>
           <div class="service-category">Growth Marketing</div>
           <p>
             Construimos sistemas de demand generation científico donde cada dólar retorna con impacto medible y escalable.
           </p>
-          <p class="svc-media-title">Eventos cubiertos por TimeKeepersAI</p>
+
+          <!-- Eventos cubiertos -->
+          <p class="svc-block-title">Eventos cubiertos por TimeKeepersAI</p>
+          <div class="svc-eventos-grid">
+
+            <div class="svc-evento-item">
+              <div class="svc-video-slot">
+                <video src="assets/videos/marketing/Eventos/evento-runway.mp4" autoplay muted loop playsinline preload="auto"></video>
+              </div>
+              <div class="svc-evento-label">
+                <strong>Billion Dollar Runway</strong>
+                <span>Naples · Estados Unidos</span>
+              </div>
+            </div>
+
+            <div class="svc-evento-item">
+              <div class="svc-video-slot">
+                <video src="assets/videos/marketing/Eventos/evento-matrimonio.mp4" autoplay muted loop playsinline preload="auto"></video>
+              </div>
+              <div class="svc-evento-label">
+                <strong>Evento Matrimonio</strong>
+                <span>Miami · Estados Unidos</span>
+              </div>
+            </div>
+
+            <div class="svc-evento-item">
+              <div class="svc-video-slot">
+                <video src="assets/videos/marketing/Eventos/evento-navideno.mp4" autoplay muted loop playsinline preload="auto"></video>
+              </div>
+              <div class="svc-evento-label">
+                <strong>Evento Navideño</strong>
+                <span>Bogotá · Colombia</span>
+              </div>
+            </div>
+
+            <div class="svc-evento-item">
+              <div class="svc-video-slot">
+                <video src="assets/videos/marketing/Eventos/evento-zegna.mp4" autoplay muted loop playsinline preload="auto"></video>
+              </div>
+              <div class="svc-evento-label">
+                <strong>Evento ZEGNA</strong>
+                <span>Nueva York · Estados Unidos</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Videos de Marketing -->
+          <p class="svc-block-title">Videos de Marketing</p>
           <div class="svc-media-grid mkt-row">
             <div class="svc-video-slot">
-              <video src="assets/videos/marketing/video1.mp4" autoplay muted loop playsinline preload="auto"></video>
+              <video src="assets/videos/marketing/video-marketing1.mp4" autoplay muted loop playsinline preload="auto"></video>
             </div>
             <div class="svc-video-slot">
-              <video src="assets/videos/marketing/video2.mp4" autoplay muted loop playsinline preload="auto"></video>
+              <video src="assets/videos/marketing/video-marketing2.mp4" autoplay muted loop playsinline preload="auto"></video>
             </div>
             <div class="svc-video-slot">
-              <video src="assets/videos/marketing/video3.mp4" autoplay muted loop playsinline preload="auto"></video>
+              <video src="assets/videos/marketing/video-marketing3.mp4" autoplay muted loop playsinline preload="auto"></video>
             </div>
             <div class="svc-video-slot">
-              <video src="assets/videos/marketing/video4.mp4" autoplay muted loop playsinline preload="auto"></video>
+              <video src="assets/videos/marketing/video-marketing4.mp4" autoplay muted loop playsinline preload="auto"></video>
             </div>
           </div>
 
@@ -2767,14 +2888,13 @@ body::after {
           <p class="svc-carousel-label">Carruseles creados por TimeKeepersAI</p>
           <div class="svc-carousel" id="mkt-carousel">
             <div class="svc-carousel-track" id="mkt-track">
-              <div class="svc-carousel-slide"><img src="assets/images/marketing/carrusel/imagen1.png" alt="Carrusel 1" loading="lazy" /></div>
-              <div class="svc-carousel-slide"><img src="assets/images/marketing/carrusel/imagen2.png" alt="Carrusel 2" loading="lazy" /></div>
-              <div class="svc-carousel-slide"><img src="assets/images/marketing/carrusel/imagen3.png" alt="Carrusel 3" loading="lazy" /></div>
-              <div class="svc-carousel-slide"><img src="assets/images/marketing/carrusel/imagen4.png" alt="Carrusel 4" loading="lazy" /></div>
-              <div class="svc-carousel-slide"><img src="assets/images/marketing/carrusel/imagen5.png" alt="Carrusel 5" loading="lazy" /></div>
-              <div class="svc-carousel-slide"><img src="assets/images/marketing/carrusel/imagen6.png" alt="Carrusel 6" loading="lazy" /></div>
-              <div class="svc-carousel-slide"><img src="assets/images/marketing/carrusel/imagen7.png" alt="Carrusel 7" loading="lazy" /></div>
-              <div class="svc-carousel-slide"><img src="assets/images/marketing/carrusel/imagen8.png" alt="Carrusel 8" loading="lazy" /></div>
+              <div class="svc-carousel-slide"><img src="assets/images/marketing/carrusel/1.jpg" alt="Carrusel 1" loading="lazy" /></div>
+              <div class="svc-carousel-slide"><img src="assets/images/marketing/carrusel/2.jpg" alt="Carrusel 2" loading="lazy" /></div>
+              <div class="svc-carousel-slide"><img src="assets/images/marketing/carrusel/3.png" alt="Carrusel 3" loading="lazy" /></div>
+              <div class="svc-carousel-slide"><img src="assets/images/marketing/carrusel/5.png" alt="Carrusel 4" loading="lazy" /></div>
+              <div class="svc-carousel-slide"><img src="assets/images/marketing/carrusel/6.png" alt="Carrusel 5" loading="lazy" /></div>
+              <div class="svc-carousel-slide"><img src="assets/images/marketing/carrusel/7.png" alt="Carrusel 6" loading="lazy" /></div>
+              <div class="svc-carousel-slide"><img src="assets/images/marketing/carrusel/8.png" alt="Carrusel 7" loading="lazy" /></div>
             </div>
             <button class="svc-carousel-btn prev" onclick="mktCarousel(-1)" aria-label="Anterior">
               <i data-lucide="chevron-left"></i>
@@ -2790,7 +2910,6 @@ body::after {
               <span onclick="mktGoTo(4)"></span>
               <span onclick="mktGoTo(5)"></span>
               <span onclick="mktGoTo(6)"></span>
-              <span onclick="mktGoTo(7)"></span>
             </div>
           </div>
         </article>
@@ -3548,8 +3667,8 @@ body::after {
 (function() {
   var mktIndex = 0;
   var slides = document.querySelectorAll('#mkt-track .svc-carousel-slide');
-  var dots = document.querySelectorAll('#mkt-dots span');
-  var timer = setInterval(function() { step(1); }, 4000);
+  var dots   = document.querySelectorAll('#mkt-dots span');
+  var timer  = setInterval(function() { step(1); }, 4000);
   var touchStartX = 0;
 
   function step(dir) {
