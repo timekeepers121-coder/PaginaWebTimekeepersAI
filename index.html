@@ -2583,6 +2583,26 @@ body::after {
   transition: top 0.25s var(--ease-out-expo);
 }
 .skip-link:focus { top: 12px; outline: 2px solid var(--pure-light); outline-offset: 2px; }
+
+/* Language toggle button */
+.lang-toggle {
+  display: flex; align-items: center; gap: 5px;
+  padding: 5px 13px;
+  border: 1px solid rgba(74,143,212,0.35);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--silver-node);
+  font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: 0.14em;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+  -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
+}
+.lang-toggle:hover { border-color: var(--tech-cyan); color: var(--tech-cyan); }
+.lang-toggle .lang-cur { color: var(--tech-cyan); font-weight: 700; }
+.lang-toggle .lang-sep { opacity: 0.35; }
+@media (max-width: 480px) { .lang-toggle { padding: 4px 9px; font-size: 10px; } }
 </style>
 <!-- ============================================================
   TRACKING & ANALYTICS — TimeKeepers AI
@@ -2693,15 +2713,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </a>
 
   <ul class="nav-links" id="navLinks">
-    <li><a href="#servicios" class="nav-link">Servicios</a></li>
-    <li><a href="#proceso" class="nav-link">Proceso</a></li>
-    <li><a href="#filosofia" class="nav-link">Filosofía</a></li>
-    <li><a href="#metricas" class="nav-link">Resultados</a></li>
-    <li><a href="#contacto" class="nav-link">Contacto</a></li>
+    <li><a href="#servicios" class="nav-link" data-i18n="nav-services">Servicios</a></li>
+    <li><a href="#proceso" class="nav-link" data-i18n="nav-process">Proceso</a></li>
+    <li><a href="#filosofia" class="nav-link" data-i18n="nav-philosophy">Filosofía</a></li>
+    <li><a href="#metricas" class="nav-link" data-i18n="nav-results">Resultados</a></li>
+    <li><a href="#contacto" class="nav-link" data-i18n="nav-contact">Contacto</a></li>
   </ul>
 
   <div class="nav-cta-wrap">
-    <a href="#contacto" class="btn btn-primary btn-compact">
+    <button class="lang-toggle" id="langToggle" aria-label="Cambiar idioma / Switch language">
+      <span class="lang-cur" id="langCur">ES</span>
+      <span class="lang-sep">/</span>
+      <span id="langAlt">EN</span>
+    </button>
+    <a href="#contacto" class="btn btn-primary btn-compact" data-i18n="nav-cta">
       Agenda gratis
       <i data-lucide="arrow-right"></i>
     </a>
@@ -2737,30 +2762,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="hero-inner">
       <div class="hero-eyebrow reveal">Intelligent Automation Studio · US × LATAM</div>
-      <h1 class="hero-title reveal" data-stagger="2">
+      <h1 class="hero-title reveal" data-stagger="2" data-i18n-html="hero-title">
         Marketing y automatización <span class="serif-italic">inteligente</span>.
       </h1>
-      <p class="hero-subtitle reveal" data-stagger="3">
+      <p class="hero-subtitle reveal" data-stagger="3" data-i18n="hero-subtitle">
         Como tu agencia de marketing y aliados en Inteligencia Artificial, construimos y automatizamos los ecosistemas que tu negocio necesita. Captamos clientes y optimizamos tu operación para escalar tus ventas sin depender de tu agenda.
       </p>
 
       <div class="hero-ctas reveal" data-stagger="4">
-        <a href="#contacto" class="btn btn-primary" id="heroCta" data-magnetic>
+        <a href="#contacto" class="btn btn-primary" id="heroCta" data-magnetic data-i18n="hero-cta-primary">
           Agenda tu auditoría gratis
           <i data-lucide="arrow-right"></i>
         </a>
         <a href="https://wa.me/573012117396?text=Hola%20TimeKeepers%20AI%2C%20quiero%20agendar%20mi%20auditor%C3%ADa%20gratis"
            class="btn btn-secondary"
            target="_blank" rel="noopener"
-           aria-label="Abrir conversación de WhatsApp">
+           aria-label="Abrir conversación de WhatsApp"
+           data-i18n="hero-cta-secondary">
           Hablar por WhatsApp
           <i data-lucide="message-circle"></i>
         </a>
       </div>
 
       <div class="hero-badges reveal" data-stagger="4">
-        <span class="hero-microcopy">30 min · Sin venta forzada · 100% gratis</span>
-        <span class="hero-microcopy hero-microcopy-active">
+        <span class="hero-microcopy" data-i18n="hero-microcopy">30 min · Sin venta forzada · 100% gratis</span>
+        <span class="hero-microcopy hero-microcopy-active" data-i18n-html="hero-active">
           <span class="status-dot" aria-hidden="true"></span>
           Clientes activos en Miami · NYC · Bogotá
         </span>
@@ -2768,15 +2794,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="hero-meta reveal" data-stagger="5">
         <div class="hero-meta-item">
-          <span class="label">Mercado</span>
+          <span class="label" data-i18n="meta-market-label">Mercado</span>
           <span class="value">US &amp; LATAM</span>
         </div>
         <div class="hero-meta-item">
-          <span class="label">Modalidad</span>
-          <span class="value">100% Remoto</span>
+          <span class="label" data-i18n="meta-mode-label">Modalidad</span>
+          <span class="value" data-i18n="meta-mode-val">100% Remoto</span>
         </div>
         <div class="hero-meta-item">
-          <span class="label">Respuesta</span>
+          <span class="label" data-i18n="meta-response-label">Respuesta</span>
           <span class="value">&lt; 24 horas</span>
         </div>
       </div>
@@ -2821,11 +2847,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="services section-slide" id="servicios">
     <div class="services-wrap">
       <header class="services-head">
-        <div class="eyebrow reveal">Portafolio · 4 prácticas</div>
-        <h2 class="section-title reveal" data-stagger="2">
+        <div class="eyebrow reveal" data-i18n="svc-eyebrow">Portafolio · 4 prácticas</div>
+        <h2 class="section-title reveal" data-stagger="2" data-i18n-html="svc-title">
           Cuatro sistemas. Un único <span class="serif-italic">objetivo</span>.
         </h2>
-        <p class="section-sub reveal" data-stagger="3">
+        <p class="section-sub reveal" data-stagger="3" data-i18n="svc-sub">
           No vendemos herramientas sueltas. Construimos un ecosistema completo donde cada pieza alimenta a la siguiente.
         </p>
       </header>
@@ -2839,14 +2865,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="service-icon"><i data-lucide="trending-up"></i></span>
           </div>
           <div class="service-divider"></div>
-          <h3>Marketing Profesional</h3>
+          <h3 data-i18n="svc01-title">Marketing Profesional</h3>
           <div class="service-category">Growth Marketing</div>
-          <p>
+          <p data-i18n="svc01-desc">
             Construimos sistemas de demand generation científico donde cada dólar retorna con impacto medible y escalable.
           </p>
 
           <!-- Eventos cubiertos -->
-          <p class="svc-block-title">Eventos cubiertos por TimeKeepersAI</p>
+          <p class="svc-block-title" data-i18n="svc01-events">Eventos cubiertos por TimeKeepersAI</p>
           <div class="svc-eventos-grid">
 
             <div class="svc-evento-item">
@@ -2892,7 +2918,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
 
           <!-- Videos de Marketing -->
-          <p class="svc-block-title">Videos de Marketing</p>
+          <p class="svc-block-title" data-i18n="svc01-mktvideos">Videos de Marketing</p>
           <div class="svc-media-grid mkt-row">
             <div class="svc-video-slot">
               <video src="assets/videos/marketing/video-marketing1.mp4" autoplay muted loop playsinline preload="auto"></video>
@@ -2909,7 +2935,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
 
           <!-- Carrusel de imágenes -->
-          <p class="svc-carousel-label">Carruseles creados por TimeKeepersAI</p>
+          <p class="svc-carousel-label" data-i18n="svc01-carousel">Carruseles creados por TimeKeepersAI</p>
           <div class="svc-carousel" id="mkt-carousel">
             <div class="svc-carousel-track" id="mkt-track">
               <div class="svc-carousel-slide"><img src="assets/images/marketing/carrusel/1.jpg" alt="Carrusel 1" loading="lazy" /></div>
@@ -2945,9 +2971,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="service-icon"><i data-lucide="workflow"></i></span>
           </div>
           <div class="service-divider"></div>
-          <h3>Automatización empresarial cognitiva</h3>
+          <h3 data-i18n="svc02-title">Automatización empresarial cognitiva</h3>
           <div class="service-category">Workflow Orchestration</div>
-          <p>
+          <p data-i18n="svc02-desc">
             Construimos sistemas de automatización inteligente end-to-end que eliminan cuellos de botella operativos y multiplican capacidad sin aumentar nómina.
           </p>
           <!-- Videos de automatización: agregar archivos a assets/videos/automatizacion/ -->
@@ -2960,9 +2986,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="service-icon"><i data-lucide="layout-dashboard"></i></span>
           </div>
           <div class="service-divider"></div>
-          <h3>Activos web de alto rendimiento</h3>
+          <h3 data-i18n="svc03-title">Activos web de alto rendimiento</h3>
           <div class="service-category">High-Conversion Web</div>
-          <p>
+          <p data-i18n="svc03-desc">
             Construimos Digital Real Estate optimizado para conversión máxima, velocidad extrema y arquitectura SEO técnica.
           </p>
           <div class="svc-web-grid">
@@ -3020,40 +3046,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ====================== METRICS ====================== -->
   <section class="metrics section-slide" id="metricas">
     <header class="services-head">
-      <div class="eyebrow reveal">Resultados · La data habla</div>
-      <h2 class="section-title reveal" data-stagger="2">
+      <div class="eyebrow reveal" data-i18n="met-eyebrow">Resultados · La data habla</div>
+      <h2 class="section-title reveal" data-stagger="2" data-i18n-html="met-title">
         Cuatro señales que <span class="serif-italic">importan</span>.
       </h2>
     </header>
 
     <div class="metrics-grid">
       <div class="metric-cell reveal">
-        <span class="metric-eyebrow">Trayectoria</span>
+        <span class="metric-eyebrow" data-i18n="met1-eye">Trayectoria</span>
         <div class="metric-value">
           <span class="counter" data-target="3" data-decimals="0">3</span>
         </div>
-        <p class="metric-desc">Años de experiencia diseñando e implementando soluciones tecnológicas y de marketing.</p>
+        <p class="metric-desc" data-i18n="met1-desc">Años de experiencia diseñando e implementando soluciones tecnológicas y de marketing.</p>
       </div>
       <div class="metric-cell reveal" data-stagger="2">
-        <span class="metric-eyebrow">Alianzas activas</span>
+        <span class="metric-eyebrow" data-i18n="met2-eye">Alianzas activas</span>
         <div class="metric-value">
           <span class="counter" data-target="8" data-decimals="0">8</span>
         </div>
-        <p class="metric-desc">Cuentas corporativas escalando actualmente sus operaciones con nuestras estrategias.</p>
+        <p class="metric-desc" data-i18n="met2-desc">Cuentas corporativas escalando actualmente sus operaciones con nuestras estrategias.</p>
       </div>
       <div class="metric-cell reveal" data-stagger="3">
-        <span class="metric-eyebrow">Impacto real</span>
+        <span class="metric-eyebrow" data-i18n="met3-eye">Impacto real</span>
         <div class="metric-value">
           <span class="unit">+</span><span class="counter" data-target="25" data-decimals="0">25</span>
         </div>
-        <p class="metric-desc">Clientes satisfechos que han transformado sus negocios con nosotros.</p>
+        <p class="metric-desc" data-i18n="met3-desc">Clientes satisfechos que han transformado sus negocios con nosotros.</p>
       </div>
       <div class="metric-cell reveal" data-stagger="4">
-        <span class="metric-eyebrow">Eficiencia operativa</span>
+        <span class="metric-eyebrow" data-i18n="met4-eye">Eficiencia operativa</span>
         <div class="metric-value">
           <span class="unit">+</span><span class="counter" data-target="100" data-decimals="0">100</span>
         </div>
-        <p class="metric-desc">Flujos de trabajo y procesos automatizados para devolverle el tiempo a los equipos de trabajo.</p>
+        <p class="metric-desc" data-i18n="met4-desc">Flujos de trabajo y procesos automatizados para devolverle el tiempo a los equipos de trabajo.</p>
       </div>
     </div>
   </section>
@@ -3064,8 +3090,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="process section-slide" id="proceso">
     <div class="process-wrap">
       <header class="services-head">
-        <div class="eyebrow reveal">El proceso</div>
-        <h2 class="section-title reveal" data-stagger="2">
+        <div class="eyebrow reveal" data-i18n="proc-eyebrow">El proceso</div>
+        <h2 class="section-title reveal" data-stagger="2" data-i18n-html="proc-title">
           Así trabajamos <span class="serif-italic">contigo</span>.
         </h2>
       </header>
@@ -3080,24 +3106,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="timeline-step reveal">
           <div class="step-node">01</div>
           <div class="step-card">
-            <h4>Diagnóstico estratégico</h4>
-            <p>Auditamos tu operación y encontramos exactamente dónde se te está escapando el tiempo y el dinero. Sin tecnicismos. Con un plan claro.</p>
+            <h4 data-i18n="proc1-title">Diagnóstico estratégico</h4>
+            <p data-i18n="proc1-desc">Auditamos tu operación y encontramos exactamente dónde se te está escapando el tiempo y el dinero. Sin tecnicismos. Con un plan claro.</p>
           </div>
         </div>
 
         <div class="timeline-step reveal" data-stagger="2">
           <div class="step-node">02</div>
           <div class="step-card">
-            <h4>Implementación a medida</h4>
-            <p>Construimos los sistemas de IA, marketing y automatización que tu negocio necesita. Ni más, ni menos.</p>
+            <h4 data-i18n="proc2-title">Implementación a medida</h4>
+            <p data-i18n="proc2-desc">Construimos los sistemas de IA, marketing y automatización que tu negocio necesita. Ni más, ni menos.</p>
           </div>
         </div>
 
         <div class="timeline-step reveal" data-stagger="3">
           <div class="step-node">03</div>
           <div class="step-card">
-            <h4>Crecimiento medible</h4>
-            <p>Monitoreamos la data, ajustamos en tiempo real y escalamos lo que funciona. Tu negocio mejora cada mes — con evidencia.</p>
+            <h4 data-i18n="proc3-title">Crecimiento medible</h4>
+            <p data-i18n="proc3-desc">Monitoreamos la data, ajustamos en tiempo real y escalamos lo que funciona. Tu negocio mejora cada mes — con evidencia.</p>
           </div>
         </div>
       </div>
@@ -3119,10 +3145,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="contact-wrap">
       <header class="services-head">
         <div class="eyebrow reveal">Let's build</div>
-        <h2 class="section-title reveal" data-stagger="2">
+        <h2 class="section-title reveal" data-stagger="2" data-i18n-html="cont-title">
           ¿Listo para recuperar tu <span class="serif-italic">tiempo</span>?
         </h2>
-        <p class="section-sub reveal" data-stagger="3">
+        <p class="section-sub reveal" data-stagger="3" data-i18n="cont-sub">
           Agenda 30 minutos con nosotros. Te mostramos exactamente cómo se vería tu negocio funcionando con IA — sin compromiso, sin venta forzada.
         </p>
       </header>
@@ -3137,43 +3163,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
           <div class="form-row">
             <div class="form-field">
-              <label for="f-name">Nombre completo</label>
-              <input type="text" id="f-name" name="name" placeholder="Tu nombre" required />
-              <span class="field-error">Ingresa tu nombre</span>
+              <label for="f-name" data-i18n="form-name-label">Nombre completo</label>
+              <input type="text" id="f-name" name="name" placeholder="Tu nombre" required data-i18n-ph="form-name-ph" />
+              <span class="field-error" data-i18n="form-name-err">Ingresa tu nombre</span>
             </div>
             <div class="form-field">
-              <label for="f-company">Empresa</label>
+              <label for="f-company" data-i18n="form-company-label">Empresa</label>
               <input type="text" id="f-company" name="company" placeholder="Acme Corp" required />
-              <span class="field-error">Ingresa tu empresa</span>
+              <span class="field-error" data-i18n="form-company-err">Ingresa tu empresa</span>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-field">
-              <label for="f-email">Email corporativo</label>
+              <label for="f-email" data-i18n="form-email-label">Email corporativo</label>
               <input type="email" id="f-email" name="email" placeholder="ivan@acme.com" required />
-              <span class="field-error">Email inválido</span>
+              <span class="field-error" data-i18n="form-email-err">Email inválido</span>
             </div>
             <div class="form-field">
               <label for="f-whatsapp">WhatsApp</label>
               <input type="tel" id="f-whatsapp" name="whatsapp" placeholder="+1 239 ..." required />
-              <span class="field-error">Ingresa un número válido</span>
+              <span class="field-error" data-i18n="form-wa-err">Ingresa un número válido</span>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-field full">
-              <label for="f-message">¿Qué quieres resolver primero?</label>
-              <textarea id="f-message" name="message" rows="4" placeholder="Cuéntanos brevemente tu cuello de botella principal..." required></textarea>
-              <span class="field-error">Cuéntanos al menos una línea</span>
+              <label for="f-message" data-i18n="form-msg-label">¿Qué quieres resolver primero?</label>
+              <textarea id="f-message" name="message" rows="4" placeholder="Cuéntanos brevemente tu cuello de botella principal..." required data-i18n-ph="form-msg-ph"></textarea>
+              <span class="field-error" data-i18n="form-msg-err">Cuéntanos al menos una línea</span>
             </div>
           </div>
 
-          <button type="submit" class="btn btn-primary form-submit" data-magnetic>
+          <button type="submit" class="btn btn-primary form-submit" data-magnetic data-i18n="form-submit">
             Agendar mi auditoría gratis
             <i data-lucide="arrow-right"></i>
           </button>
-          <p class="form-microcopy">Te respondemos en menos de 24h.</p>
+          <p class="form-microcopy" data-i18n="form-micro">Te respondemos en menos de 24h.</p>
         </form>
 
         <div class="contact-info">
@@ -3208,7 +3234,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ====================== FOOTER ====================== -->
 <footer class="site-footer">
-  <p class="footer-statement">
+  <p class="footer-statement" data-i18n-html="footer-statement">
     ¿Tienes un proceso que te quita el <span class="serif-italic">sueño</span>? Hablemos.
   </p>
 
@@ -3222,13 +3248,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </span>
       </a>
       <p class="footer-tagline">More time for <span class="serif-italic">you</span>.</p>
-      <p class="footer-subtag">Automatiza hoy · Crece siempre</p>
+      <p class="footer-subtag" data-i18n="footer-subtag">Automatiza hoy · Crece siempre</p>
     </div>
 
     <div class="footer-col">
-      <h5>Servicios</h5>
+      <h5 data-i18n="foot-svc-h">Servicios</h5>
       <ul>
-        <li><a href="#servicios">Automatización cognitiva</a></li>
+        <li><a href="#servicios" data-i18n="foot-svc1">Automatización cognitiva</a></li>
         <li><a href="#servicios">Growth marketing</a></li>
         <li><a href="#servicios">High-conversion web</a></li>
         <li><a href="#servicios">AI strategy</a></li>
@@ -3236,18 +3262,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="footer-col">
-      <h5>Empresa</h5>
+      <h5 data-i18n="foot-co-h">Empresa</h5>
       <ul>
-        <li><a href="#filosofia">Filosofía</a></li>
-        <li><a href="#proceso">Proceso</a></li>
-        <li><a href="#metricas">Impacto</a></li>
+        <li><a href="#filosofia" data-i18n="foot-co1">Filosofía</a></li>
+        <li><a href="#proceso" data-i18n="foot-co2">Proceso</a></li>
+        <li><a href="#metricas" data-i18n="foot-co3">Impacto</a></li>
       </ul>
     </div>
 
     <div class="footer-col">
-      <h5>Recursos</h5>
+      <h5 data-i18n="foot-res-h">Recursos</h5>
       <ul>
-        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#contacto" data-i18n="foot-res1">Contacto</a></li>
         <li><a href="mailto:timekeepers121@gmail.com">timekeepers121@gmail.com</a></li>
       </ul>
     </div>
@@ -3255,8 +3281,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="footer-col">
       <h5>Legal</h5>
       <ul>
-        <li><a href="privacidad.html">Privacidad</a></li>
-        <li><a href="terminos.html">Términos</a></li>
+        <li><a href="privacidad.html" data-i18n="foot-leg1">Privacidad</a></li>
+        <li><a href="terminos.html" data-i18n="foot-leg2">Términos</a></li>
         <li><a href="cookies.html">Cookies</a></li>
       </ul>
     </div>
@@ -3704,6 +3730,195 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var diff = touchStartX - e.changedTouches[0].clientX;
     if (Math.abs(diff) > 40) { resetTimer(); step(diff > 0 ? 1 : -1); }
   }, { passive: true });
+})();
+</script>
+
+<!-- ====================== LANGUAGE TOGGLE ====================== -->
+<script>
+(function() {
+  var T = {
+    es: {
+      /* Nav */
+      'nav-services':   'Servicios',
+      'nav-process':    'Proceso',
+      'nav-philosophy': 'Filosofía',
+      'nav-results':    'Resultados',
+      'nav-contact':    'Contacto',
+      'nav-cta':        'Agenda gratis <i data-lucide="arrow-right"></i>',
+      /* Hero */
+      'hero-title':     'Marketing y automatización <span class="serif-italic">inteligente</span>.',
+      'hero-subtitle':  'Como tu agencia de marketing y aliados en Inteligencia Artificial, construimos y automatizamos los ecosistemas que tu negocio necesita. Captamos clientes y optimizamos tu operación para escalar tus ventas sin depender de tu agenda.',
+      'hero-cta-primary':   'Agenda tu auditoría gratis <i data-lucide="arrow-right"></i>',
+      'hero-cta-secondary': 'Hablar por WhatsApp <i data-lucide="message-circle"></i>',
+      'hero-microcopy': '30 min · Sin venta forzada · 100% gratis',
+      'hero-active':    '<span class="status-dot" aria-hidden="true"></span> Clientes activos en Miami · NYC · Bogotá',
+      'meta-market-label':   'Mercado',
+      'meta-mode-label':     'Modalidad',
+      'meta-mode-val':       '100% Remoto',
+      'meta-response-label': 'Respuesta',
+      /* Services */
+      'svc-eyebrow': 'Portafolio · 4 prácticas',
+      'svc-title':   'Cuatro sistemas. Un único <span class="serif-italic">objetivo</span>.',
+      'svc-sub':     'No vendemos herramientas sueltas. Construimos un ecosistema completo donde cada pieza alimenta a la siguiente.',
+      'svc01-title':   'Marketing Profesional',
+      'svc01-desc':    'Construimos sistemas de demand generation científico donde cada dólar retorna con impacto medible y escalable.',
+      'svc01-events':  'Eventos cubiertos por TimeKeepersAI',
+      'svc01-mktvideos': 'Videos de Marketing',
+      'svc01-carousel':  'Carruseles creados por TimeKeepersAI',
+      'svc02-title':   'Automatización empresarial cognitiva',
+      'svc02-desc':    'Construimos sistemas de automatización inteligente end-to-end que eliminan cuellos de botella operativos y multiplican capacidad sin aumentar nómina.',
+      'svc03-title':   'Activos web de alto rendimiento',
+      'svc03-desc':    'Construimos Digital Real Estate optimizado para conversión máxima, velocidad extrema y arquitectura SEO técnica.',
+      /* Metrics */
+      'met-eyebrow': 'Resultados · La data habla',
+      'met-title':   'Cuatro señales que <span class="serif-italic">importan</span>.',
+      'met1-eye': 'Trayectoria',      'met1-desc': 'Años de experiencia diseñando e implementando soluciones tecnológicas y de marketing.',
+      'met2-eye': 'Alianzas activas', 'met2-desc': 'Cuentas corporativas escalando actualmente sus operaciones con nuestras estrategias.',
+      'met3-eye': 'Impacto real',     'met3-desc': 'Clientes satisfechos que han transformado sus negocios con nosotros.',
+      'met4-eye': 'Eficiencia operativa', 'met4-desc': 'Flujos de trabajo y procesos automatizados para devolverle el tiempo a los equipos de trabajo.',
+      /* Process */
+      'proc-eyebrow': 'El proceso',
+      'proc-title':   'Así trabajamos <span class="serif-italic">contigo</span>.',
+      'proc1-title': 'Diagnóstico estratégico',
+      'proc1-desc':  'Auditamos tu operación y encontramos exactamente dónde se te está escapando el tiempo y el dinero. Sin tecnicismos. Con un plan claro.',
+      'proc2-title': 'Implementación a medida',
+      'proc2-desc':  'Construimos los sistemas de IA, marketing y automatización que tu negocio necesita. Ni más, ni menos.',
+      'proc3-title': 'Crecimiento medible',
+      'proc3-desc':  'Monitoreamos la data, ajustamos en tiempo real y escalamos lo que funciona. Tu negocio mejora cada mes — con evidencia.',
+      /* Contact */
+      'cont-title': '¿Listo para recuperar tu <span class="serif-italic">tiempo</span>?',
+      'cont-sub':   'Agenda 30 minutos con nosotros. Te mostramos exactamente cómo se vería tu negocio funcionando con IA — sin compromiso, sin venta forzada.',
+      'form-name-label':    'Nombre completo',
+      'form-name-ph':       'Tu nombre',
+      'form-name-err':      'Ingresa tu nombre',
+      'form-company-label': 'Empresa',
+      'form-company-err':   'Ingresa tu empresa',
+      'form-email-label':   'Email corporativo',
+      'form-email-err':     'Email inválido',
+      'form-wa-err':        'Ingresa un número válido',
+      'form-msg-label':     '¿Qué quieres resolver primero?',
+      'form-msg-ph':        'Cuéntanos brevemente tu cuello de botella principal...',
+      'form-msg-err':       'Cuéntanos al menos una línea',
+      'form-submit':        'Agendar mi auditoría gratis <i data-lucide="arrow-right"></i>',
+      'form-micro':         'Te respondemos en menos de 24h.',
+      /* Footer */
+      'footer-statement': '¿Tienes un proceso que te quita el <span class="serif-italic">sueño</span>? Hablemos.',
+      'footer-subtag':    'Automatiza hoy · Crece siempre',
+      'foot-svc-h': 'Servicios', 'foot-svc1': 'Automatización cognitiva',
+      'foot-co-h':  'Empresa',   'foot-co1': 'Filosofía', 'foot-co2': 'Proceso', 'foot-co3': 'Impacto',
+      'foot-res-h': 'Recursos',  'foot-res1': 'Contacto',
+      'foot-leg1':  'Privacidad','foot-leg2': 'Términos'
+    },
+    en: {
+      /* Nav */
+      'nav-services':   'Services',
+      'nav-process':    'Process',
+      'nav-philosophy': 'Philosophy',
+      'nav-results':    'Results',
+      'nav-contact':    'Contact',
+      'nav-cta':        'Book free call <i data-lucide="arrow-right"></i>',
+      /* Hero */
+      'hero-title':     'Intelligent Marketing & <span class="serif-italic">Automation</span>.',
+      'hero-subtitle':  'As your marketing agency and AI allies, we build and automate the ecosystems your business needs. We attract clients and optimize your operations to scale your revenue without depending on your schedule.',
+      'hero-cta-primary':   'Book your free audit <i data-lucide="arrow-right"></i>',
+      'hero-cta-secondary': 'Chat on WhatsApp <i data-lucide="message-circle"></i>',
+      'hero-microcopy': '30 min · No hard sell · 100% free',
+      'hero-active':    '<span class="status-dot" aria-hidden="true"></span> Active clients in Miami · NYC · Bogotá',
+      'meta-market-label':   'Market',
+      'meta-mode-label':     'Mode',
+      'meta-mode-val':       '100% Remote',
+      'meta-response-label': 'Response',
+      /* Services */
+      'svc-eyebrow': 'Portfolio · 4 practices',
+      'svc-title':   'Four systems. One single <span class="serif-italic">goal</span>.',
+      'svc-sub':     'We don\'t sell standalone tools. We build a complete ecosystem where every piece feeds the next.',
+      'svc01-title':   'Professional Marketing',
+      'svc01-desc':    'We build scientific demand generation systems where every dollar returns with measurable and scalable impact.',
+      'svc01-events':  'Events covered by TimeKeepersAI',
+      'svc01-mktvideos': 'Marketing Videos',
+      'svc01-carousel':  'Carousels created by TimeKeepersAI',
+      'svc02-title':   'Cognitive Business Automation',
+      'svc02-desc':    'We build end-to-end intelligent automation systems that eliminate operational bottlenecks and multiply capacity without increasing payroll.',
+      'svc03-title':   'High-Performance Web Assets',
+      'svc03-desc':    'We build Digital Real Estate optimized for maximum conversion, extreme speed and technical SEO architecture.',
+      /* Metrics */
+      'met-eyebrow': 'Results · The data speaks',
+      'met-title':   'Four signals that <span class="serif-italic">matter</span>.',
+      'met1-eye': 'Track Record',         'met1-desc': 'Years of experience designing and implementing technology and marketing solutions.',
+      'met2-eye': 'Active Partnerships',  'met2-desc': 'Corporate accounts currently scaling their operations with our strategies.',
+      'met3-eye': 'Real Impact',          'met3-desc': 'Satisfied clients who have transformed their businesses with us.',
+      'met4-eye': 'Operational Efficiency','met4-desc': 'Automated workflows and processes to give time back to work teams.',
+      /* Process */
+      'proc-eyebrow': 'The process',
+      'proc-title':   'How we work <span class="serif-italic">with you</span>.',
+      'proc1-title': 'Strategic Diagnosis',
+      'proc1-desc':  'We audit your operation and find exactly where time and money are slipping away. No jargon. Just a clear plan.',
+      'proc2-title': 'Custom Implementation',
+      'proc2-desc':  'We build the AI, marketing and automation systems your business needs. No more, no less.',
+      'proc3-title': 'Measurable Growth',
+      'proc3-desc':  'We monitor the data, adjust in real time and scale what works. Your business improves every month — with evidence.',
+      /* Contact */
+      'cont-title': 'Ready to get your <span class="serif-italic">time</span> back?',
+      'cont-sub':   'Schedule 30 minutes with us. We\'ll show you exactly what your business would look like running on AI — no commitment, no hard sell.',
+      'form-name-label':    'Full name',
+      'form-name-ph':       'Your name',
+      'form-name-err':      'Enter your name',
+      'form-company-label': 'Company',
+      'form-company-err':   'Enter your company',
+      'form-email-label':   'Business email',
+      'form-email-err':     'Invalid email',
+      'form-wa-err':        'Enter a valid number',
+      'form-msg-label':     'What do you want to solve first?',
+      'form-msg-ph':        'Tell us briefly about your main bottleneck...',
+      'form-msg-err':       'Tell us at least one line',
+      'form-submit':        'Book my free audit <i data-lucide="arrow-right"></i>',
+      'form-micro':         'We respond within 24h.',
+      /* Footer */
+      'footer-statement': 'Have a process keeping you up at <span class="serif-italic">night</span>? Let\'s talk.',
+      'footer-subtag':    'Automate today · Grow always',
+      'foot-svc-h': 'Services',  'foot-svc1': 'Cognitive automation',
+      'foot-co-h':  'Company',   'foot-co1': 'Philosophy', 'foot-co2': 'Process', 'foot-co3': 'Impact',
+      'foot-res-h': 'Resources', 'foot-res1': 'Contact',
+      'foot-leg1':  'Privacy',   'foot-leg2': 'Terms'
+    }
+  };
+
+  var cur = localStorage.getItem('tk-lang') || 'es';
+
+  function applyLang(lang) {
+    var t = T[lang];
+    // data-i18n → textContent
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) el.textContent = t[key];
+    });
+    // data-i18n-html → innerHTML (elements with inner tags)
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n-html');
+      if (t[key] !== undefined) { el.innerHTML = t[key]; if (window.lucide) lucide.createIcons(); }
+    });
+    // data-i18n-ph → placeholder
+    document.querySelectorAll('[data-i18n-ph]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n-ph');
+      if (t[key] !== undefined) el.placeholder = t[key];
+    });
+    // Re-render lucide icons inside replaced HTML
+    if (window.lucide) lucide.createIcons();
+    // Update button
+    document.getElementById('langCur').textContent = lang.toUpperCase();
+    document.getElementById('langAlt').textContent = lang === 'es' ? 'EN' : 'ES';
+    // Update html lang attribute
+    document.documentElement.lang = lang === 'es' ? 'es' : 'en';
+    localStorage.setItem('tk-lang', lang);
+    cur = lang;
+  }
+
+  // Apply saved language on load
+  if (cur === 'en') applyLang('en');
+
+  document.getElementById('langToggle').addEventListener('click', function() {
+    applyLang(cur === 'es' ? 'en' : 'es');
+  });
 })();
 </script>
 
