@@ -2584,6 +2584,52 @@ body::after {
 }
 .skip-link:focus { top: 12px; outline: 2px solid var(--pure-light); outline-offset: 2px; }
 
+/* ── GSAP animation helpers ─────────────────────────────── */
+
+/* Hero: let GSAP own opacity/transform — disable CSS reveal for motion users */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-inner .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Service number highlight on scroll */
+.service-num {
+  transition: color 0.35s ease, transform 0.35s ease;
+}
+.service-num.num-lit {
+  color: var(--tech-cyan);
+  transform: scale(1.08);
+}
+
+/* Card hover — scale + glow */
+.service-card {
+  transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s var(--ease-out-expo);
+}
+.service-card:hover {
+  transform: translateY(-6px) scale(1.015);
+  box-shadow: 0 24px 60px rgba(74,143,212,0.15), 0 0 0 1px rgba(74,143,212,0.2);
+}
+
+/* Submit button pulse */
+@keyframes btn-pulse {
+  0%, 85%, 100% { box-shadow: 0 0 0 0 rgba(74,143,212,0.45); }
+  50%            { box-shadow: 0 0 0 12px rgba(74,143,212,0); }
+}
+.form-submit {
+  animation: btn-pulse 3s ease-in-out infinite;
+}
+
+/* Process SVG line — start hidden, GSAP draws it */
+@media (prefers-reduced-motion: no-preference) {
+  .track-line {
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+  }
+}
+
 /* Language toggle button */
 .lang-toggle {
   display: flex; align-items: center; gap: 5px;
@@ -3730,6 +3776,132 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var diff = touchStartX - e.changedTouches[0].clientX;
     if (Math.abs(diff) > 40) { resetTimer(); step(diff > 0 ? 1 : -1); }
   }, { passive: true });
+})();
+</script>
+
+<!-- ====================== GSAP + LENIS (animation layer) ====================== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script>
+(function () {
+  if (typeof gsap === 'undefined') return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* ── 1. LENIS — smooth scroll ───────────────────────────── */
+  var lenis;
+  if (typeof Lenis !== 'undefined') {
+    lenis = new Lenis({ lerp: 0.09, smoothWheel: true, syncTouch: false });
+    gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
+    gsap.ticker.lagSmoothing(0);
+    lenis.on('scroll', ScrollTrigger.update);
+  }
+
+  /* ── 2. Reduced-motion guard ────────────────────────────── */
+  var mm = gsap.matchMedia();
+
+  /* ── Full animations — motion OK ───────────────────────── */
+  mm.add('(prefers-reduced-motion: no-preference)', function () {
+
+    /* Duration multiplier: 40% faster on mobile */
+    var mob = window.matchMedia('(max-width: 768px)').matches;
+    var D   = mob ? 0.6 : 1;   /* scale all durations by this */
+
+    /* ── HERO entrance timeline ─────────────────────────── */
+    var heroEls = [
+      '.hero-eyebrow',
+      '.hero-title',
+      '.hero-subtitle',
+      '.hero-ctas',
+      '.hero-badges',
+      '.hero-meta'
+    ];
+    gsap.set(heroEls, { opacity: 0, y: 32 });
+
+    var heroTl = gsap.timeline({ delay: 0.15 });
+    heroTl
+      .to('.hero-eyebrow',  { opacity:1, y:0, duration: 0.65*D, ease:'power3.out' })
+      .to('.hero-title',    { opacity:1, y:0, duration: 0.75*D, ease:'power3.out' }, '-=0.35')
+      .to('.hero-subtitle', { opacity:1, y:0, duration: 0.65*D, ease:'power3.out' }, '-=0.45')
+      .to('.hero-ctas',     { opacity:1, y:0, duration: 0.55*D, ease:'power3.out' }, '-=0.35')
+      .to('.hero-badges',   { opacity:1, y:0, duration: 0.5*D,  ease:'power3.out' }, '-=0.3')
+      .to('.hero-meta',     { opacity:1, y:0, duration: 0.5*D,  ease:'power3.out' }, '-=0.25');
+
+    /* ── SERVICES — card entrance + number highlight ─────── */
+    gsap.utils.toArray('.service-card').forEach(function (card, i) {
+      gsap.from(card, {
+        scrollTrigger: { trigger: card, start: 'top 85%', once: true },
+        opacity: 0, y: 44, scale: 0.97,
+        duration: 0.7*D, delay: i * 0.08, ease: 'power3.out',
+        clearProps: 'all'
+      });
+    });
+
+    gsap.utils.toArray('.service-num').forEach(function (num) {
+      ScrollTrigger.create({
+        trigger: num, start: 'top 80%', once: true,
+        onEnter: function () { num.classList.add('num-lit'); }
+      });
+    });
+
+    /* ── METRICS — stagger cells + scale pop on numbers ──── */
+    gsap.from('.metric-cell', {
+      scrollTrigger: { trigger: '.metrics-grid', start: 'top 78%', once: true },
+      opacity: 0, y: 36, scale: 0.95,
+      duration: 0.65*D, stagger: 0.13, ease: 'power3.out',
+      clearProps: 'all'
+    });
+
+    gsap.utils.toArray('.metric-value').forEach(function (mv) {
+      ScrollTrigger.create({
+        trigger: mv, start: 'top 80%', once: true,
+        onEnter: function () {
+          gsap.from(mv, { scale: 0.8, opacity: 0, duration: 0.5*D, ease: 'back.out(1.6)' });
+        }
+      });
+    });
+
+    /* ── PROCESS — steps stagger + SVG line draw ─────────── */
+    gsap.from('.timeline-step', {
+      scrollTrigger: { trigger: '.timeline', start: 'top 78%', once: true },
+      opacity: 0, x: -28,
+      duration: 0.6*D, stagger: 0.18, ease: 'power3.out',
+      clearProps: 'all'
+    });
+
+    var trackLine = document.querySelector('.track-line');
+    if (trackLine) {
+      gsap.to(trackLine, {
+        strokeDashoffset: 0,
+        duration: 1.1*D, ease: 'power2.inOut',
+        scrollTrigger: { trigger: '.timeline', start: 'top 72%', once: true }
+      });
+    }
+
+    /* ── CONTACT — form fade + info cards stagger ─────────── */
+    gsap.from('.contact-form', {
+      scrollTrigger: { trigger: '.contact-form', start: 'top 80%', once: true },
+      opacity: 0, y: 28, duration: 0.7*D, ease: 'power3.out', clearProps: 'all'
+    });
+
+    gsap.from('.contact-card', {
+      scrollTrigger: { trigger: '.contact-info', start: 'top 82%', once: true },
+      opacity: 0, x: 24,
+      duration: 0.55*D, stagger: 0.12, ease: 'power3.out', clearProps: 'all'
+    });
+
+    return function () { /* cleanup on matchMedia change */ };
+  });
+
+  /* ── Reduced-motion fallback — show everything static ── */
+  mm.add('(prefers-reduced-motion: reduce)', function () {
+    document.querySelectorAll('.hero-inner .reveal').forEach(function (el) {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+  });
+
 })();
 </script>
 
