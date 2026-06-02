@@ -2790,7 +2790,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="hero" id="hero">
 
     <!-- Background video -->
-    <video class="hero-video" autoplay loop muted playsinline preload="auto" aria-hidden="true">
+    <video class="hero-video" autoplay loop muted playsinline preload="metadata" aria-hidden="true">
       <source src="estees/Video AI 2.mp4" type="video/mp4" />
     </video>
     <div class="hero-video-overlay" aria-hidden="true"></div>
@@ -2921,7 +2921,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <div class="svc-evento-item">
               <div class="svc-video-slot">
-                <video src="assets/videos/marketing/Eventos/evento-runway.mp4" autoplay muted loop playsinline preload="auto"></video>
+                <video src="assets/videos/marketing/Eventos/evento-runway.mp4" autoplay muted loop playsinline preload="none" data-lazy-video></video>
               </div>
               <div class="svc-evento-label">
                 <strong>Billion Dollar Runway</strong>
@@ -2931,7 +2931,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <div class="svc-evento-item">
               <div class="svc-video-slot">
-                <video src="assets/videos/marketing/Eventos/evento-matrimonio.mp4" autoplay muted loop playsinline preload="auto"></video>
+                <video src="assets/videos/marketing/Eventos/evento-matrimonio.mp4" autoplay muted loop playsinline preload="none" data-lazy-video></video>
               </div>
               <div class="svc-evento-label">
                 <strong>Evento Matrimonio</strong>
@@ -2941,7 +2941,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <div class="svc-evento-item">
               <div class="svc-video-slot">
-                <video src="assets/videos/marketing/Eventos/evento-navideno.mp4" autoplay muted loop playsinline preload="auto"></video>
+                <video src="assets/videos/marketing/Eventos/evento-navideno.mp4" autoplay muted loop playsinline preload="none" data-lazy-video></video>
               </div>
               <div class="svc-evento-label">
                 <strong>Evento Navideño</strong>
@@ -2951,7 +2951,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <div class="svc-evento-item">
               <div class="svc-video-slot">
-                <video src="assets/videos/marketing/Eventos/evento-zegna.mp4" autoplay muted loop playsinline preload="auto"></video>
+                <video src="assets/videos/marketing/Eventos/evento-zegna.mp4" autoplay muted loop playsinline preload="none" data-lazy-video></video>
               </div>
               <div class="svc-evento-label">
                 <strong>Evento ZEGNA</strong>
@@ -2965,16 +2965,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p class="svc-block-title" data-i18n="svc01-mktvideos">Videos de Marketing</p>
           <div class="svc-media-grid mkt-row">
             <div class="svc-video-slot">
-              <video src="assets/videos/marketing/video-marketing1.mp4" autoplay muted loop playsinline preload="auto"></video>
+              <video src="assets/videos/marketing/video-marketing1.mp4" autoplay muted loop playsinline preload="none" data-lazy-video></video>
             </div>
             <div class="svc-video-slot">
-              <video src="assets/videos/marketing/video-marketing2.mp4" autoplay muted loop playsinline preload="auto"></video>
+              <video src="assets/videos/marketing/video-marketing2.mp4" autoplay muted loop playsinline preload="none" data-lazy-video></video>
             </div>
             <div class="svc-video-slot">
-              <video src="assets/videos/marketing/video-marketing3.mp4" autoplay muted loop playsinline preload="auto"></video>
+              <video src="assets/videos/marketing/video-marketing3.mp4" autoplay muted loop playsinline preload="none" data-lazy-video></video>
             </div>
             <div class="svc-video-slot">
-              <video src="assets/videos/marketing/video-marketing4.mp4" autoplay muted loop playsinline preload="auto"></video>
+              <video src="assets/videos/marketing/video-marketing4.mp4" autoplay muted loop playsinline preload="none" data-lazy-video></video>
             </div>
           </div>
 
@@ -3777,10 +3777,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 
+<!-- ====================== LAZY VIDEO LOADER ====================== -->
+<script>
+(function () {
+  var lazyVideos = document.querySelectorAll('video[data-lazy-video]');
+  if (!lazyVideos.length) return;
+
+  var vio = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      var v = e.target;
+      if (e.isIntersecting) {
+        if (v.readyState === 0) {
+          v.load();
+        }
+        v.play().catch(function(){});
+      } else {
+        v.pause();
+      }
+    });
+  }, { rootMargin: '200px 0px', threshold: 0.1 });
+
+  lazyVideos.forEach(function (v) { vio.observe(v); });
+})();
+</script>
+
 <!-- ====================== GSAP + LENIS (animation layer) ====================== -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
 <script>
 (function () {
   if (typeof gsap === 'undefined') return;
