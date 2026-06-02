@@ -625,16 +625,8 @@ body::after {
   overflow: hidden;
 }
 
-/* Word-reveal: cada palabra del título usa clip-path */
-.hero-title .word-wrap {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: bottom;
-}
-.hero-title .word {
-  display: inline-block;
-  will-change: transform;
-}
+/* Título animado con skewY + fade — will-change solo durante la animación */
+.hero-title { will-change: transform, opacity; }
 
 /* Hero video — right half, full video visible, only left edge diffused */
 .hero-video {
@@ -2864,10 +2856,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
-    <div class="hero-scroll" aria-hidden="true">
-      <span>SCROLL</span>
-      <i data-lucide="arrow-down"></i>
-    </div>
   </section>
 
 
@@ -3827,36 +3815,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       '.hero-badges',
       '.hero-meta'
     ];
-    gsap.set(heroEls, { opacity: 0, y: 32 });
-    /* El título se maneja palabra por palabra — resetear el set global */
-    gsap.set('.hero-title', { opacity: 1, y: 0 });
-
-    /* ── Word-split en hero-title ───────────────────────── */
-    var titleEl = document.querySelector('.hero-title');
-    if (titleEl) {
-      /* Split conservando spans internos (serif-italic) */
-      var raw = titleEl.innerHTML;
-      /* Wrap cada palabra en .word-wrap > .word, respetando tags */
-      var wrapped = raw.replace(/(<[^>]+>)|([^\s<]+)/g, function(m, tag, word) {
-        if (tag) return tag;
-        return '<span class="word-wrap"><span class="word">' + word + '</span></span>';
-      });
-      titleEl.innerHTML = wrapped;
-    }
+    gsap.set(heroEls, { opacity: 0, y: 36 });
 
     var heroTl = gsap.timeline({ delay: 0.15 });
     heroTl
       .to('.hero-eyebrow',  { opacity:1, y:0, duration: 0.6*D, ease:'power3.out' })
-      .from('.hero-title .word', {
-        y: '105%', opacity: 0,
-        duration: 0.7*D, stagger: 0.06*D,
-        ease: 'power4.out'
-      }, '-=0.3')
-      .to('.hero-title', { opacity:1 }, '<')   /* asegurar visibilidad */
-      .to('.hero-subtitle', { opacity:1, y:0, duration: 0.6*D, ease:'power3.out' }, '-=0.2')
-      .to('.hero-ctas',     { opacity:1, y:0, duration: 0.5*D, ease:'power3.out' }, '-=0.3')
-      .to('.hero-badges',   { opacity:1, y:0, duration: 0.45*D, ease:'power3.out' }, '-=0.25')
-      .to('.hero-meta',     { opacity:1, y:0, duration: 0.45*D, ease:'power3.out' }, '-=0.2');
+      .to('.hero-title',    { opacity:1, y:0, skewY:0, duration: 0.8*D, ease:'power4.out',
+                              clearProps:'skewY' }, '-=0.25')
+      .to('.hero-subtitle', { opacity:1, y:0, duration: 0.65*D, ease:'power3.out' }, '-=0.4')
+      .to('.hero-ctas',     { opacity:1, y:0, duration: 0.55*D, ease:'power3.out' }, '-=0.35')
+      .to('.hero-badges',   { opacity:1, y:0, duration: 0.5*D,  ease:'power3.out' }, '-=0.3')
+      .to('.hero-meta',     { opacity:1, y:0, duration: 0.45*D, ease:'power3.out' }, '-=0.25');
+
+    /* Añadir skew inicial al título para efecto premium */
+    gsap.set('.hero-title', { skewY: 2 });
 
     /* ── SERVICES — card entrance + number highlight ─────── */
     gsap.utils.toArray('.service-card').forEach(function (card, i) {
