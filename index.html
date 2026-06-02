@@ -2584,22 +2584,35 @@ body::after {
 }
 .skip-link:focus { top: 12px; outline: 2px solid var(--pure-light); outline-offset: 2px; }
 </style>
-<!--
-  ===========================================================================
-  TRACKING — Activar reemplazando las IDs marcadas y descomentando el bloque.
-  GA4 ID         : G-XXXXXXXXXX        (Google Analytics 4)
-  Meta Pixel     : PIXEL_ID             (Facebook / Meta Ads)
-  Clarity ID     : CLARITY_ID           (Microsoft Clarity heatmaps)
+<!-- ============================================================
+  TRACKING & ANALYTICS — TimeKeepers AI
+  Para activar cada herramienta:
+    1. Reemplaza el ID de placeholder por el tuyo
+    2. Quita los comentarios <!-- y --> que rodean el bloque
+  ============================================================
 
-  Eventos custom disparados desde JS via track(name, params):
-    - click_hero_cta   (Agenda tu auditoria gratis)
-    - click_whatsapp   (cualquier link wa.me/) + fbq('track','Contact')
-    - click_email      (cualquier mailto:)
-    - lead_submit      (form enviado con exito) + fbq('track','Lead')
-  ===========================================================================
+  IDs que debes configurar:
+  ┌─────────────────────────┬──────────────────────────────┐
+  │ Herramienta             │ Dónde obtener el ID          │
+  ├─────────────────────────┼──────────────────────────────┤
+  │ Google Tag Manager      │ tagmanager.google.com        │
+  │ Google Analytics 4      │ analytics.google.com         │
+  │ Google Search Console   │ search.google.com/console    │
+  │ Meta Pixel              │ business.facebook.com        │
+  │ Microsoft Clarity       │ clarity.microsoft.com        │
+  └─────────────────────────┴──────────────────────────────┘
 -->
 
-<!-- Google Analytics 4 -->
+<!-- 1. GOOGLE TAG MANAGER — reemplaza GTM-XXXXXXX por tu ID -->
+<!--
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+-->
+
+<!-- 2. GOOGLE ANALYTICS 4 — reemplaza G-XXXXXXXXXX por tu ID -->
 <!--
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 <script>
@@ -2610,7 +2623,12 @@ body::after {
 </script>
 -->
 
-<!-- Meta Pixel -->
+<!-- 3. GOOGLE SEARCH CONSOLE — reemplaza el content por tu código de verificación -->
+<!--
+<meta name="google-site-verification" content="TU_CODIGO_SEARCH_CONSOLE" />
+-->
+
+<!-- 4. META PIXEL — reemplaza PIXEL_ID por tu ID -->
 <!--
 <script>
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -2625,7 +2643,7 @@ body::after {
   src="https://www.facebook.com/tr?id=PIXEL_ID&ev=PageView&noscript=1"/></noscript>
 -->
 
-<!-- Microsoft Clarity -->
+<!-- 5. MICROSOFT CLARITY — reemplaza CLARITY_ID por tu ID -->
 <!--
 <script type="text/javascript">
   (function(c,l,a,r,i,t,y){
@@ -2636,13 +2654,13 @@ body::after {
 </script>
 -->
 
-<!-- reCAPTCHA v3 (invisible) — descomentar y reemplazar SITE_KEY al activar -->
-<!--
-<script src="https://www.google.com/recaptcha/api.js?render=TU_SITE_KEY_RECAPTCHA_V3" defer></script>
--->
-
 </head>
 <body>
+<!-- Google Tag Manager (noscript) — reemplaza GTM-XXXXXXX por tu ID -->
+<!--
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+-->
 
 <!-- Skip link (a11y) -->
 <a class="skip-link" href="#hero">Saltar al contenido principal</a>
